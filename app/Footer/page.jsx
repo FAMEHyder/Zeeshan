@@ -28,7 +28,7 @@ function Footer() {
           <Box display="flex" alignItems="center" gap={1} mb={2}>
             <Box
               component="img"
-              src="/logo.png"
+              src="/Netbots.png"
               alt="NetBots Logo"
               height="40px"
             />
@@ -37,7 +37,7 @@ function Footer() {
               fontWeight="bold"
               sx={{ color: "#fff" }}
             >
-              NetBots
+              
             </Typography>
           </Box>
           <Typography variant="body2" mb={2}>

@@ -24,6 +24,9 @@ import WorkIcon from "@mui/icons-material/Work";
 import SchoolIcon from "@mui/icons-material/School";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 
+// Framer Motion
+import { motion } from "framer-motion";
+
 function Header() {
   const topNavItems = [
     { label: "Home", icon: <HomeIcon sx={{ fontSize: 20 }} /> },
@@ -46,76 +49,109 @@ function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Animation variants
+  const navVariants = {
+    hidden: { y: -80, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.6 } },
+  };
+
+  const listVariants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.15 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+  };
+
   return (
     <>
-      <AppBar
-        position="fixed"
-        sx={{
-            // width:{xs: ,sm: ,md ,lg : , xl:},
-          background: elevate
-            ? "rgba(0,0,0,0.6)"
-            : "linear-gradient(90deg, #0a2342, #0a2342 , #0a2342, #0f3460)",
-          backdropFilter: elevate ? "blur(12px)" : "none",
-          transition: "all 0.3s ease",
-        }}
+      <motion.div
+        variants={navVariants}
+        initial="hidden"
+        animate="visible"
       >
-        <Toolbar
+        <AppBar
+          position="fixed"
           sx={{
-            height: "10vh",
-            
-            justifyContent: "space-between",
-            px: { xs: 2, md: 5 },
+            background: elevate
+              ? "rgba(0,0,0,0.6)"
+              : "linear-gradient(90deg, #0a2342, #0a2342 , #0a2342, #0f3460)",
+            backdropFilter: elevate ? "blur(12px)" : "none",
+            transition: "all 0.3s ease",
           }}
         >
-          {/* Logo */}
-          <Box display="flex" alignItems="center" gap={2}>
-            <Box
-              component="img"
-              src="/CompanyLogo.png"
-              alt="Logo"
-              height="45px"
-              sx={{
-                filter: "drop-shadow(0 0 8px rgba(0,0,0,0.4))",
-                cursor: "pointer",
-              }}
-            />
-          </Box>
-
-          {/* Desktop Menu */}
-          <Box display={{ xs: "none", md: "flex" }} gap={1.5}>
-            {topNavItems.map((item) => (
-              <Button
-                key={item.label}
-                startIcon={item.icon}
-                sx={{
-                  color: "#fff",
-                  textTransform: "capitalize",
-                  fontWeight: 500,
-                  px: 2,
-                  borderRadius: "12px",
-                  transition: "all 0.3s ease",
-                  "&:hover": {
-                    bgcolor: "rgba(255,255,255,0.15)",
-                    transform: "translateY(-2px)",
-                  },
-                }}
-              >
-                {item.label}
-              </Button>
-            ))}
-          </Box>
-
-          {/* Mobile Hamburger */}
-          <IconButton
-            color="inherit"
-            edge="end"
-            sx={{ display: { xs: "flex", md: "none" } }}
-            onClick={() => setMobileOpen(true)}
+          <Toolbar
+            sx={{
+              height: "10vh",
+              justifyContent: "space-between",
+              px: { xs: 2, md: 5 },
+            }}
           >
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+            {/* Logo */}
+            <Box display="flex" alignItems="center" gap={2}>
+              <motion.img
+                component='img'
+                src='/Netbots.png'
+                alt="Logo"
+                height="45"
+                style={{
+                  filter: "drop-shadow(0 0 8px rgba(0,0,0,0.4))",
+                  cursor: "pointer",
+                }}
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              />
+            </Box>
+
+            {/* Desktop Menu */}
+            <motion.div
+              style={{ display: "flex", gap: "12px" }}
+              variants={listVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <Box display={{ xs: "none", md: "flex" }} gap={1.5}>
+                {topNavItems.map((item) => (
+                  <motion.div key={item.label} variants={itemVariants}>
+                    <Button
+                      startIcon={item.icon}
+                      sx={{
+                        color: "#fff",
+                        textTransform: "capitalize",
+                        fontWeight: 500,
+                        px: 2,
+                        borderRadius: "12px",
+                        transition: "all 0.3s ease",
+                        "&:hover": {
+                          bgcolor: "rgba(255,255,255,0.15)",
+                          transform: "translateY(-2px)",
+                        },
+                      }}
+                    >
+                      {item.label}
+                    </Button>
+                  </motion.div>
+                ))}
+              </Box>
+            </motion.div>
+
+            {/* Mobile Hamburger */}
+            <IconButton
+              color="inherit"
+              edge="end"
+              sx={{ display: { xs: "flex", md: "none" } }}
+              onClick={() => setMobileOpen(true)}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+      </motion.div>
 
       {/* Drawer for Mobile */}
       <Drawer

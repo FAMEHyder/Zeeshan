@@ -1,19 +1,18 @@
 "use client";
 
-import React, { useState, useEffect, } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Grid,
   Typography,
-  Paper,
   Button
 } from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
+import { motion } from "framer-motion";
 
 const API_KEY = "YOUR_GOOGLE_API_KEY"; // <- replace with your key
 const PLACE_ID = "YOUR_GOOGLE_PLACE_ID"; // <- replace with your place id
 
-const getYourBussiness = () => {
+const GetYourBusiness = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
@@ -34,8 +33,32 @@ const getYourBussiness = () => {
     fetchReviews();
   }, []);
 
+  // Animation Variants
+  const containerVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.2,
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const childVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
   return (
     <Box
+      component={motion.div}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={containerVariants}
       sx={{
         minHeight: "80vh",
         display: "flex",
@@ -43,58 +66,77 @@ const getYourBussiness = () => {
         justifyContent: "center",
         textAlign: "center",
         px: 2,
-        background: "linear-gradient(90deg, #0c3567ff)",
+        background: "linear-gradient(90deg, #0c3567ff, #0a2342)",
         color: "#fff",
         py: 6,
       }}
     >
-      <Grid>
-        <Typography fontWeight={800} fontSize={"30px"}>
+      {/* Heading */}
+      <Grid component={motion.div} variants={childVariants}>
+        <Typography fontWeight={800} fontSize={{ xs: "24px", md: "32px" }} gutterBottom>
           Ready to Transform Your Business?
         </Typography>
-        <Typography fontSize={"20px"} color="gray">
+        <Typography fontSize={{ xs: "16px", md: "20px" }} color="gray">
           Join hundreds of businesses that have already transformed their operations with NetBots
         </Typography>
       </Grid>
 
-      <Box display="flex" gap={2} flexWrap="wrap" justifyContent="center" mt={5}>
-        <Button
-          variant="contained"
-          sx={{
-            bgcolor: "#007bff", // bright blue button
-            px: 4,
-            py: 1.5,
-            fontSize: "1rem",
-            fontWeight: 600,
-            borderRadius: "10px",
-            textTransform: "none",
-            "&:hover": { bgcolor: "#0056b3" },
-          }}
-        >
-          View Products
-        </Button>
-        <Button
-          variant="outlined"
-          sx={{
-            color: "#fff",
-            borderColor: "#fff",
-            px: 4,
-            py: 1.5,
-            fontSize: "1rem",
-            fontWeight: 600,
-            borderRadius: "10px",
-            textTransform: "none",
-            "&:hover": {
-              borderColor: "#1d8cf8",
-              color: "#1d8cf8",
-            },
-          }}
-        >
-          View Services
-        </Button>
+      {/* Buttons */}
+      <Box
+        display="flex"
+        gap={2}
+        flexWrap="wrap"
+        justifyContent="center"
+        mt={5}
+        component={motion.div}
+        variants={childVariants}
+      >
+        {/* View Products Button */}
+        <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}>
+          <Button
+            variant="contained"
+            sx={{
+              bgcolor: "#007bff",
+              px: { xs: 3, sm: 4 },
+              py: { xs: 1.2, sm: 1.5 },
+              fontSize: { xs: "0.9rem", sm: "1rem" },
+              fontWeight: 600,
+              borderRadius: "10px",
+              textTransform: "none",
+              "&:hover": { bgcolor: "#0056b3" },
+              width: { xs: "100%", sm: "auto" },
+            }}
+          >
+            View Products
+          </Button>
+        </motion.div>
+
+        {/* View Services Button */}
+        <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}>
+          <Button
+            variant="outlined"
+            sx={{
+              color: "#fff",
+              borderColor: "#fff",
+              px: { xs: 3, sm: 4 },
+              py: { xs: 1.2, sm: 1.5 },
+              fontSize: { xs: "0.9rem", sm: "1rem" },
+              fontWeight: 600,
+              borderRadius: "10px",
+              textTransform: "none",
+              "&:hover": {
+                borderColor: "#1d8cf8",
+                color: "#1d8cf8",
+              },
+              width: { xs: "100%", sm: "auto" },
+            }}
+          >
+            View Services
+          </Button>
+        </motion.div>
       </Box>
     </Box>
   );
 };
 
-export default getYourBussiness;
+export default GetYourBusiness;
