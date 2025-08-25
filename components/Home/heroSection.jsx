@@ -68,7 +68,7 @@ function HeroSection() {
             "&:hover": { bgcolor: "#0056b3" },
           }}
         >
-          Apply Training Program
+          Our Products
         </Button>
         <Button
           variant="outlined"

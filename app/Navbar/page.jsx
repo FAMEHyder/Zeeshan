@@ -8,26 +8,32 @@ import {
   Button,
 } from "@mui/material";
 
+// Import icons
+import HomeIcon from "@mui/icons-material/Home";
+import InfoIcon from "@mui/icons-material/Info";
+import BuildIcon from "@mui/icons-material/Build";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import WorkIcon from "@mui/icons-material/Work";
+import SchoolIcon from "@mui/icons-material/School";
+import ContactMailIcon from "@mui/icons-material/ContactMail";
+
 function Header() {
+  // Add icons for each nav item
   const topNavItems = [
-    "Home",
-    "About",
-    "Service",
-    "Product",
-    "Portfolio",
-    "Career",
-    "Contact",
+    { label: "Home", icon: <HomeIcon sx={{ fontSize: 18 }} /> },
+    { label: "About", icon: <InfoIcon sx={{ fontSize: 18 }} /> },
+    { label: "Service", icon: <BuildIcon sx={{ fontSize: 18 }} /> },
+    { label: "Product", icon: <ShoppingCartIcon sx={{ fontSize: 18 }} /> },
+    { label: "Portfolio", icon: <WorkIcon sx={{ fontSize: 18 }} /> },
+    { label: "Career", icon: <SchoolIcon sx={{ fontSize: 18 }} /> },
+    { label: "Contact", icon: <ContactMailIcon sx={{ fontSize: 18 }} /> },
   ];
 
   const [elevate, setElevate] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setElevate(true);
-      } else {
-        setElevate(false);
-      }
+      setElevate(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -39,10 +45,10 @@ function Header() {
         position="fixed"
         sx={{
           background: elevate
-            ? "4px 20px rgba(0,0,0,0.6)" // on scroll (dark semi-transparent)
+            ? "rgba(0,0,0,0.6)" // on scroll (dark semi-transparent)
             : "linear-gradient(90deg, #0a2342, #0a2342 , #0a2342, #0f3460)", // initial blue gradient
           backdropFilter: elevate ? "blur(12px)" : "none",
-       
+          transition: "all 0.3s ease",
         }}
       >
         <Toolbar
@@ -66,11 +72,12 @@ function Header() {
             />
           </Box>
 
-          {/* Right: Buttons */}
+          {/* Right: Buttons with Icons */}
           <Box display={{ xs: "none", md: "flex" }} gap={1.5}>
-            {topNavItems.map((text) => (
+            {topNavItems.map((item) => (
               <Button
-                key={text}
+                key={item.label}
+                startIcon={item.icon}
                 sx={{
                   color: "#fff",
                   textTransform: "capitalize",
@@ -84,7 +91,7 @@ function Header() {
                   },
                 }}
               >
-                {text}
+                {item.label}
               </Button>
             ))}
           </Box>
