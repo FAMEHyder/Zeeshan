@@ -70,6 +70,7 @@ const Achievements = () => {
         sx={{
           mt: 4,
           flexWrap: { xs: "wrap", md: "nowrap" }, // wrap on small, nowrap on desktop
+          alignItems: "stretch", // all cards equal height
         }}
         component={motion.div}
         variants={containerVariants}
@@ -83,22 +84,30 @@ const Achievements = () => {
             key={i}
             component={motion.div}
             variants={cardVariants}
+            sx={{ display: "flex" }}
           >
             <Card
               component={motion.div}
               whileHover={{
                 scale: 1.08,
-                boxShadow: "0 10px 40px rgba(0,0,0,0.6)",
+                rotateX: 8, // ✅ 3D tilt effect
+                rotateY: -8,
+                boxShadow: "0 20px 50px rgba(0,0,0,0.7)",
               }}
-              transition={{ type: "spring", stiffness: 200, damping: 10 }}
+              transition={{ type: "spring", stiffness: 200, damping: 12 }}
               sx={{
                 bgcolor: "#121e36",
                 borderRadius: 3,
                 height: "100%",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
+                width: "100%",
+                boxShadow: "0 6px 20px rgba(0,0,0,0.3)",
                 textAlign: "center",
                 p: 2,
-                minWidth: { xs: "100%", sm: 200 },
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                transformStyle: "preserve-3d", // ✅ enables 3D effect
+                perspective: "1000px",
               }}
             >
               <CardContent>
