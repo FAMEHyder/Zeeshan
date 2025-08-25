@@ -1,8 +1,9 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-
-export default function Home() {
+import './globals.css'
+import Home from './Home/page.jsx'
+export default function Main() {
   return (
-    <>Hello</>
+    <>
+    <Home />
+    </>
   );
 }
