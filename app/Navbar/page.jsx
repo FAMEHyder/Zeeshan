@@ -12,6 +12,8 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Slide,
+  useScrollTrigger,
 } from "@mui/material";
 
 // Import icons
@@ -27,6 +29,16 @@ import ContactMailIcon from "@mui/icons-material/ContactMail";
 // Framer Motion
 import { motion } from "framer-motion";
 
+// Hide on scroll wrapper
+function HideOnScroll({ children }) {
+  const trigger = useScrollTrigger();
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
+}
+
 function Header() {
   const topNavItems = [
     { label: "Home", icon: <HomeIcon sx={{ fontSize: 20 }} /> },
@@ -38,50 +50,22 @@ function Header() {
     { label: "Contact", icon: <ContactMailIcon sx={{ fontSize: 20 }} /> },
   ];
 
-  const [elevate, setElevate] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setElevate(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Animation variants
-  const navVariants = {
-    hidden: { y: -80, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.6 } },
-  };
-
-  const listVariants = {
-    hidden: {},
-    visible: {
-      transition: { staggerChildren: 0.15 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: -10 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-  };
 
   return (
     <>
-      <motion.div
-        variants={navVariants}
-        initial="hidden"
-        animate="visible"
-      >
+      <HideOnScroll>
         <AppBar
           position="fixed"
           sx={{
-            background: elevate
-              ? "rgba(0,0,0,0.6)"
-              : "linear-gradient(90deg, #0a2342, #0a2342 , #0a2342, #0f3460)",
-            backdropFilter: elevate ? "blur(12px)" : "none",
+            background:
+              "linear-gradient(90deg, #0a2342, #0a2342 , #0a2342, #0f3460)",
             transition: "all 0.3s ease",
+            mt:2,
+            width:'200vh',
+            mr:6,
+            borderRadius: "20px 20px 20px 20px", // only bottom rounded
+            boxShadow: "1px 1px 1px 1px black",
           }}
         >
           <Toolbar
@@ -94,8 +78,7 @@ function Header() {
             {/* Logo */}
             <Box display="flex" alignItems="center" gap={2}>
               <motion.img
-                component='img'
-                src='/Netbots.png'
+                src="/Netbots.png"
                 alt="Logo"
                 height="45"
                 style={{
@@ -109,36 +92,28 @@ function Header() {
             </Box>
 
             {/* Desktop Menu */}
-            <motion.div
-              style={{ display: "flex", gap: "12px" }}
-              variants={listVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              <Box display={{ xs: "none", md: "flex" }} gap={1.5}>
-                {topNavItems.map((item) => (
-                  <motion.div key={item.label} variants={itemVariants}>
-                    <Button
-                      startIcon={item.icon}
-                      sx={{
-                        color: "#fff",
-                        textTransform: "capitalize",
-                        fontWeight: 500,
-                        px: 2,
-                        borderRadius: "12px",
-                        transition: "all 0.3s ease",
-                        "&:hover": {
-                          bgcolor: "rgba(255,255,255,0.15)",
-                          transform: "translateY(-2px)",
-                        },
-                      }}
-                    >
-                      {item.label}
-                    </Button>
-                  </motion.div>
-                ))}
-              </Box>
-            </motion.div>
+            <Box display={{ xs: "none", md: "flex" }} gap={1.5}>
+              {topNavItems.map((item) => (
+                <Button
+                  key={item.label}
+                  startIcon={item.icon}
+                  sx={{
+                    color: "#fff",
+                    textTransform: "capitalize",
+                    fontWeight: 500,
+                    px: 2,
+                    borderRadius: "12px",
+                    transition: "all 0.3s ease",
+                    "&:hover": {
+                      bgcolor: "rgba(255,255,255,0.15)",
+                      transform: "translateY(-2px)",
+                    },
+                  }}
+                >
+                  {item.label}
+                </Button>
+              ))}
+            </Box>
 
             {/* Mobile Hamburger */}
             <IconButton
@@ -151,7 +126,7 @@ function Header() {
             </IconButton>
           </Toolbar>
         </AppBar>
-      </motion.div>
+      </HideOnScroll>
 
       {/* Drawer for Mobile */}
       <Drawer
@@ -182,9 +157,6 @@ function Header() {
           ))}
         </List>
       </Drawer>
-
-      {/* Spacer for fixed AppBar */}
-      <Toolbar />
     </>
   );
 }

@@ -4,32 +4,61 @@ import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { motion } from "framer-motion";
 
+// Motion Variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.3, delayChildren: 0.2 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.9, ease: "easeOut" },
+  },
+};
+
 function HeroSection() {
   return (
     <Box
+      component={motion.div}
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
       sx={{
-        minHeight: "80vh",
+        minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         textAlign: "center",
         px: { xs: 2, sm: 3, md: 6 },
-        background: "linear-gradient(90deg, #0a2342, #0f3460)",
+        background: "linear-gradient(90deg, #0a2342, #0f3460), url('/Netbots.png')",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
         color: "#fff",
+        perspective: "1000px",
+        borderRadius:'0 0 50px 50px'
       }}
     >
       {/* Title */}
       <Typography
-        variant="h2"
+        component={motion.h1}
+        variants={itemVariants}
         fontWeight="bold"
         sx={{
           mb: 2,
+          mt:5,
           fontSize: {
-            xs: "1.8rem", // mobile
-            sm: "2.4rem", // tablet
-            md: "1rem", // laptop
-            lg: "4rem",   // desktop
+            xs: "1.8rem",
+            sm: "2.4rem",
+            md: "3rem",
+            lg: "4rem",
           },
           lineHeight: 1.2,
           background:
@@ -50,7 +79,8 @@ function HeroSection() {
 
       {/* Subtitle */}
       <Typography
-        variant="h6"
+        component={motion.p}
+        variants={itemVariants}
         sx={{
           maxWidth: { xs: "100%", sm: "90%", md: "700px" },
           mb: { xs: 3, sm: 4 },
@@ -64,19 +94,21 @@ function HeroSection() {
 
       {/* Buttons */}
       <Box
+        component={motion.div}
+        variants={itemVariants}
         display="flex"
         gap={2}
         flexDirection={{ xs: "column", sm: "row" }}
         flexWrap="wrap"
         justifyContent="center"
         alignItems="center"
-        component={motion.div}
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, ease: "easeOut" }}
       >
         {/* Our Products Button */}
-        <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}>
+        <motion.div
+          whileHover={{ scale: 1.1, rotateY: 10, rotateX: 5 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ type: "spring", stiffness: 200, damping: 12 }}
+        >
           <Button
             variant="contained"
             sx={{
@@ -89,6 +121,7 @@ function HeroSection() {
               textTransform: "none",
               "&:hover": { bgcolor: "#0056b3" },
               width: { xs: "100%", sm: "auto" },
+              boxShadow: "0 8px 20px rgba(0,123,255,0.4)",
             }}
           >
             Our Products
@@ -96,7 +129,11 @@ function HeroSection() {
         </motion.div>
 
         {/* Our Services Button */}
-        <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}>
+        <motion.div
+          whileHover={{ scale: 1.1, rotateY: -10, rotateX: -5 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ type: "spring", stiffness: 200, damping: 12 }}
+        >
           <Button
             variant="outlined"
             sx={{
@@ -113,6 +150,7 @@ function HeroSection() {
                 color: "#1d8cf8",
               },
               width: { xs: "100%", sm: "auto" },
+              boxShadow: "0 8px 20px rgba(255,255,255,0.3)",
             }}
           >
             Our Services
