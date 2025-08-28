@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Box,
@@ -15,6 +15,7 @@ import {
   Slide,
   useScrollTrigger,
 } from "@mui/material";
+import { useRouter } from "next/navigation"; // ✅ Next.js router
 
 // Import icons
 import MenuIcon from "@mui/icons-material/Menu";
@@ -40,17 +41,18 @@ function HideOnScroll({ children }) {
 }
 
 function Header() {
-  const topNavItems = [
-    { label: "Home", icon: <HomeIcon sx={{ fontSize: 20 }} /> },
-    { label: "About", icon: <InfoIcon sx={{ fontSize: 20 }} /> },
-    { label: "Service", icon: <BuildIcon sx={{ fontSize: 20 }} /> },
-    { label: "Product", icon: <ShoppingCartIcon sx={{ fontSize: 20 }} /> },
-    { label: "Portfolio", icon: <WorkIcon sx={{ fontSize: 20 }} /> },
-    { label: "Career", icon: <SchoolIcon sx={{ fontSize: 20 }} /> },
-    { label: "Contact", icon: <ContactMailIcon sx={{ fontSize: 20 }} /> },
-  ];
-
+  const router = useRouter(); // ✅ initialize router
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const topNavItems = [
+    { label: "Home", icon: <HomeIcon sx={{ fontSize: 20 }} />, path: "/" },
+    { label: "About", icon: <InfoIcon sx={{ fontSize: 20 }} />, path: "/About" },
+    { label: "Service", icon: <BuildIcon sx={{ fontSize: 20 }} />, path: "/service" },
+    { label: "Product", icon: <ShoppingCartIcon sx={{ fontSize: 20 }} />, path: "/product" },
+    { label: "Portfolio", icon: <WorkIcon sx={{ fontSize: 20 }} />, path: "/portfolio" },
+    { label: "Career", icon: <SchoolIcon sx={{ fontSize: 20 }} />, path: "/career" },
+    { label: "Contact", icon: <ContactMailIcon sx={{ fontSize: 20 }} />, path: "/contact" },
+  ];
 
   return (
     <>
@@ -58,13 +60,12 @@ function Header() {
         <AppBar
           position="fixed"
           sx={{
-            background:
-              "linear-gradient(90deg, #0a2342, #0a2342 , #0a2342, #0f3460)",
+            background: "linear-gradient(90deg, #0a2342, #0a2342 , #0a2342, #0f3460)",
             transition: "all 0.3s ease",
-            mt:2,
-            width:'200vh',
-            mr:6,
-            borderRadius: "20px 20px 20px 20px", // only bottom rounded
+            mt: 2,
+            mr: 8, // center align
+            width: { xs: "95%", md: "90%" },
+            borderRadius: "20px",
             boxShadow: "1px 1px 1px 1px black",
           }}
         >
@@ -88,6 +89,7 @@ function Header() {
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
+                onClick={() => router.push("/")} // ✅ Logo click → Home
               />
             </Box>
 
@@ -97,6 +99,7 @@ function Header() {
                 <Button
                   key={item.label}
                   startIcon={item.icon}
+                  onClick={() => router.push(item.path)} // ✅ navigate
                   sx={{
                     color: "#fff",
                     textTransform: "capitalize",
@@ -146,7 +149,10 @@ function Header() {
             <ListItem
               button
               key={item.label}
-              onClick={() => setMobileOpen(false)}
+              onClick={() => {
+                router.push(item.path); // ✅ route
+                setMobileOpen(false);
+              }}
               sx={{
                 "&:hover": { bgcolor: "rgba(255,255,255,0.1)" },
               }}

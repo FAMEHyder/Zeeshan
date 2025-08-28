@@ -58,7 +58,7 @@ const HowWeDeliver = () => {
   return (
     <Box
       sx={{
-        background: "linear-gradient(90deg, #0a2342, #0f3460)",
+        background: "linear-gradient(90deg, #103b70ff, #144c90ff)",
     color: "white",
     textAlign: "center",
     py: { xs: 6, md: 10 },
