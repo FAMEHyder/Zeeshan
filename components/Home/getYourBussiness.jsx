@@ -1,16 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  Grid,
-  Typography,
-  Button
-} from "@mui/material";
+import { Box, Grid, Typography, Button, Container } from "@mui/material";
 import { motion } from "framer-motion";
 
-const API_KEY = "YOUR_GOOGLE_API_KEY"; // <- replace with your key
-const PLACE_ID = "YOUR_GOOGLE_PLACE_ID"; // <- replace with your place id
+const API_KEY = "YOUR_GOOGLE_API_KEY"; // replace with your key
+const PLACE_ID = "YOUR_GOOGLE_PLACE_ID"; // replace with your place id
 
 const GetYourBusiness = () => {
   const [reviews, setReviews] = useState([]);
@@ -39,11 +34,7 @@ const GetYourBusiness = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        staggerChildren: 0.2,
-        duration: 0.6,
-        ease: "easeOut",
-      },
+      transition: { staggerChildren: 0.2, duration: 0.6, ease: "easeOut" },
     },
   };
 
@@ -65,76 +56,89 @@ const GetYourBusiness = () => {
         flexDirection: "column",
         justifyContent: "center",
         textAlign: "center",
+        backgroundColor: "white", // ✅ clean white background
+        color: "black",
+        py: { xs: 6, md: 10 },
         px: 2,
-        background: "linear-gradient(90deg, #0c3567ff, #0a2342)",
-        color: "#fff",
-        py: 6,
       }}
     >
-      {/* Heading */}
-      <Grid component={motion.div} variants={childVariants}>
-        <Typography fontWeight={800} fontSize={{ xs: "24px", md: "32px" }} gutterBottom>
-          Ready to Transform Your Business?
-        </Typography>
-        <Typography fontSize={{ xs: "16px", md: "20px" }} color="gray">
-          Join hundreds of businesses that have already transformed their operations with NetBots
-        </Typography>
-      </Grid>
-
-      {/* Buttons */}
-      <Box
-        display="flex"
-        gap={2}
-        flexWrap="wrap"
-        justifyContent="center"
-        mt={5}
-        component={motion.div}
-        variants={childVariants}
-      >
-        {/* View Products Button */}
-        <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}>
-          <Button
-            variant="contained"
-            sx={{
-              bgcolor: "#007bff",
-              px: { xs: 3, sm: 4 },
-              py: { xs: 1.2, sm: 1.5 },
-              fontSize: { xs: "0.9rem", sm: "1rem" },
-              fontWeight: 600,
-              borderRadius: "10px",
-              textTransform: "none",
-              "&:hover": { bgcolor: "#0056b3" },
-              width: { xs: "100%", sm: "auto" },
-            }}
+      <Container maxWidth="lg">
+        {/* Heading */}
+        <Grid component={motion.div} variants={childVariants}>
+          <Typography
+            fontWeight={800}
+            fontSize={{ xs: "24px", sm: "28px", md: "36px" }}
+            gutterBottom
           >
-            View Products
-          </Button>
-        </motion.div>
-
-        {/* View Services Button */}
-        <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}>
-          <Button
-            variant="outlined"
-            sx={{
-              color: "#fff",
-              borderColor: "#fff",
-              px: { xs: 3, sm: 4 },
-              py: { xs: 1.2, sm: 1.5 },
-              fontSize: { xs: "0.9rem", sm: "1rem" },
-              fontWeight: 600,
-              borderRadius: "10px",
-              textTransform: "none",
-              "&:hover": {
-                borderColor: "#1d8cf8",
-                color: "#1d8cf8",
-              },
-              width: { xs: "100%", sm: "auto" },
-            }}
+            Ready to Transform Your Business?
+          </Typography>
+          <Typography
+            fontSize={{ xs: "14px", sm: "16px", md: "20px" }}
+            color="text.secondary"
+            maxWidth="800px"
+            mx="auto"
           >
-            View Services
-          </Button>
-        </motion.div>
-      </Box>
+            Join hundreds of businesses that have already transformed their
+            operations with NetBots
+          </Typography>
+        </Grid>
+
+        {/* Buttons */}
+        <Box
+          display="flex"
+          flexDirection={{ xs: "column", sm: "row" }}
+          gap={2}
+          justifyContent="center"
+          alignItems="center"
+          mt={5}
+          component={motion.div}
+          variants={childVariants}
+        >
+          {/* View Products Button */}
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button
+              variant="contained"
+              sx={{
+                bgcolor: "#007bff",
+                px: { xs: 4, sm: 5 },
+                py: { xs: 1.3, sm: 1.5 },
+                fontSize: { xs: "0.9rem", sm: "1rem" },
+                fontWeight: 600,
+                borderRadius: "10px",
+                textTransform: "none",
+                "&:hover": { bgcolor: "#0056b3" },
+                width: { xs: "100%", sm: "auto" }, // full width on mobile
+              }}
+            >
+              View Products
+            </Button>
+          </motion.div>
+
+          {/* View Services Button */}
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button
+              variant="outlined"
+              sx={{
+                color: "black",
+                borderColor: "black",
+                px: { xs: 4, sm: 5 },
+                py: { xs: 1.3, sm: 1.5 },
+                fontSize: { xs: "0.9rem", sm: "1rem" },
+                fontWeight: 600,
+                borderRadius: "10px",
+                textTransform: "none",
+                "&:hover": {
+                  borderColor: "#1d8cf8",
+                  color: "#1d8cf8",
+                },
+                width: { xs: "100%", sm: "auto" },
+              }}
+            >
+              View Services
+            </Button>
+          </motion.div>
+        </Box>
+      </Container>
     </Box>
   );
 };

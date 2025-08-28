@@ -42,13 +42,13 @@ const Review = () => {
         justifyContent: "center",
         textAlign: "center",
         px: 2,
-        background: "linear-gradient(90deg, #05101dff)",
-        color: "#fff",
+        background: "#fff", // White background
+        color: "#000",
         py: 6,
       }}
     >
       <Grid>
-        <Typography fontWeight={800} fontSize={"30px"}>
+        <Typography fontWeight={800} fontSize={"30px"} color="#111">
           What Our Clients Say
         </Typography>
         <Typography fontSize={"20px"} color="gray">
@@ -70,18 +70,23 @@ const Review = () => {
                 sx={{
                   p: 3,
                   borderRadius: 3,
-                  bgcolor: "rgba(255,255,255,0.05)",
-                  color: "#fff",
+                  bgcolor: "#f9f9f9", // Light gray background for card
+                  color: "#111",
                   textAlign: "left",
                   height: "100%",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
-                  boxShadow: "0 0 15px rgba(0,255,255,0.2)",
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+                  transition: "transform 0.3s ease",
+                  "&:hover": {
+                    transform: "translateY(-5px)",
+                    boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
+                  },
                 }}
               >
                 <Box>
-                  <Typography fontWeight={600}>
+                  <Typography fontWeight={600} color="#222">
                     {review.author_name}
                   </Typography>
                   <Box display="flex" alignItems="center" gap={0.5}>
@@ -97,7 +102,7 @@ const Review = () => {
                   </Typography>
                 </Box>
 
-                <Typography mt={2} fontSize={"15px"}>
+                <Typography mt={2} fontSize={"15px"} color="#333">
                   “{review.text}”
                 </Typography>
               </Paper>

@@ -12,7 +12,7 @@ const items = [
   {
     icon: <SearchIcon sx={{ fontSize: 50, color: "#1e88e5" }} />,
     title: "Discovery",
-    desc: "We analyze your needs and create tailored solution plan.",
+    desc: "We analyze your needs and create a tailored solution plan.",
   },
   {
     icon: <CodeIcon sx={{ fontSize: 50, color: "#43a047" }} />,
@@ -58,11 +58,14 @@ const HowWeDeliver = () => {
   return (
     <Box
       sx={{
-        bgcolor: "white", // ✅ background white
-        color: "black",
-        textAlign: "center",
-        py: { xs: 6, md: 10 },
-        px: { xs: 2, sm: 4, md: 8 },
+        background: "linear-gradient(90deg, #0a2342, #0f3460)",
+    color: "white",
+    textAlign: "center",
+    py: { xs: 6, md: 10 },
+    px: { xs: 2, sm: 4, md: 8 },
+    width: { xs: "100%", sm: "95%", md: "95%" }, // responsive width
+    borderRadius: "20px",
+    mx: "auto", // center align instead of fixed ml
       }}
       component={motion.div}
       initial="hidden"
@@ -76,15 +79,10 @@ const HowWeDeliver = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <Typography
-          variant="h4"
-          fontWeight="bold"
-          gutterBottom
-          sx={{ color: "black" }}
-        >
+        <Typography variant="h4" fontWeight="bold" gutterBottom>
           How We Deliver
         </Typography>
-        <Typography variant="subtitle1" sx={{ color: "grey.600" }} gutterBottom>
+        <Typography variant="subtitle1" sx={{ color: "grey.300" }} gutterBottom>
           Our proven process ensures successful delivery of your software
           solutions
         </Typography>
@@ -105,44 +103,42 @@ const HowWeDeliver = () => {
             xs={12}
             sm={6}
             md={4}
-            lg={2.4} // ✅ even distribution for 5 items
+            lg={2.4} // ✅ 5 equal columns
             key={i}
             component={motion.div}
             variants={cardVariants}
-            sx={{ display: "flex" }}
+            sx={{ display: "flex", justifyContent: "center" }}
           >
             <Box
               component={motion.div}
               whileHover={{
                 scale: 1.05,
                 y: -6,
-                boxShadow: "0 12px 30px rgba(0,0,0,0.15)",
+                boxShadow: "0 12px 30px rgba(255,255,255,0.2)",
               }}
               transition={{ type: "spring", stiffness: 200, damping: 15 }}
               sx={{
-                bgcolor: "white",
+                bgcolor: "rgba(255,255,255,0.08)",
                 borderRadius: 3,
-                height: "100%",
-                width: "100%",
-                boxShadow: "0 6px 20px rgba(0,0,0,0.08)",
+                width: "100%",         // ✅ same width in grid
+                maxWidth: 260,         // ✅ all boxes same max width
+                height: 260,           // ✅ fixed equal height
+                backdropFilter: "blur(8px)",
+                boxShadow: "0 6px 20px rgba(0,0,0,0.4)",
                 textAlign: "center",
                 p: 3,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                justifyContent: "center",
+                border: "1px solid rgba(255,255,255,0.2)",
               }}
             >
               {item.icon}
-              <Typography
-                variant="h6"
-                fontWeight="bold"
-                color="black"
-                mt={2}
-                mb={1}
-              >
+              <Typography variant="h6" fontWeight="bold" mt={2} mb={1}>
                 {item.title}
               </Typography>
-              <Typography variant="body2" sx={{ color: "grey.600" }}>
+              <Typography variant="body2" sx={{ color: "grey.300" }}>
                 {item.desc}
               </Typography>
             </Box>
