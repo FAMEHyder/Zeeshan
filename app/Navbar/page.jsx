@@ -63,7 +63,7 @@ function Header() {
             background: "linear-gradient(90deg, #0a2342, #0a2342 , #0a2342, #0f3460)",
             transition: "all 0.3s ease",
             mt: 2,
-            mr: 8, // center align
+            mr: {xs:1,sm:3,md:8}, // center align
             width: { xs: "95%", md: "90%" },
             borderRadius: "20px",
             boxShadow: "1px 1px 1px 1px black",
