@@ -30,7 +30,7 @@ const main = () => {
                     lineHeight: 1.2,
                     backgroundSize: "190% auto",
                     fontWeight: 800,
-                    color: '#103b70ff',
+                    color: '#0b147fff',
 
                 }}
             >

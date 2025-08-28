@@ -10,7 +10,7 @@ const OurMission = () => {
         minHeight: "100vh",
         width: "96%",
         ml:3,
-        background: "linear-gradient(135deg, #0a2342, #1d3557)",
+        background: "linear-gradient(135deg, #0e114fff, #1d3557)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
