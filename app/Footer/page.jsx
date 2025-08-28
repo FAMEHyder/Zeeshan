@@ -20,6 +20,7 @@ function Footer() {
         color: "rgba(255,255,255,0.85)",
         py: 6,
         px: { xs: 3, md: 10 },
+        mt:2
       }}
     >
       <Grid container spacing={4}>
