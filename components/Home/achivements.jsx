@@ -27,20 +27,36 @@ const Achievements = () => {
   };
 
   const achievements = [
-    { number: "50+", title: "Clients Worldwide", desc: "Trusted by businesses across industries" },
-    { number: "98%", title: "Client Satisfaction", desc: "Based on customer feedback" },
-    { number: "24/7", title: "Support Available", desc: "Round-the-clock expert assistance" },
-    { number: "10+", title: "Countries Served", desc: "Global presence and impact" },
+    {
+      number: "50+",
+      title: "Clients Worldwide",
+      desc: "Trusted by businesses across industries",
+    },
+    {
+      number: "98%",
+      title: "Client Satisfaction",
+      desc: "Based on customer feedback",
+    },
+    {
+      number: "24/7",
+      title: "Support Available",
+      desc: "Round-the-clock expert assistance",
+    },
+    {
+      number: "10+",
+      title: "Countries Served",
+      desc: "Global presence and impact",
+    },
   ];
 
   return (
     <Box
       sx={{
-        bgcolor: "#0a1128",
-        color: "white",
+        bgcolor: "white", // ✅ White background
+        color: "black",
         textAlign: "center",
-        py: 8,
-        px: { xs: 2, md: 6 },
+        py: { xs: 6, md: 10 },
+        px: { xs: 2, sm: 4, md: 8 },
       }}
       component={motion.div}
       initial="hidden"
@@ -54,10 +70,19 @@ const Achievements = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <Typography variant="h4" fontWeight="bold" gutterBottom>
+        <Typography
+          variant="h4"
+          fontWeight="bold"
+          gutterBottom
+          sx={{ color: "black" }}
+        >
           Our Achievements
         </Typography>
-        <Typography variant="subtitle1" color="grey.400" gutterBottom>
+        <Typography
+          variant="subtitle1"
+          sx={{ color: "grey.600" }}
+          gutterBottom
+        >
           Delivering excellence and innovation to businesses worldwide
         </Typography>
       </motion.div>
@@ -69,7 +94,7 @@ const Achievements = () => {
         justifyContent="center"
         sx={{
           mt: 4,
-          flexWrap: { xs: "wrap", md: "nowrap" }, // wrap on small, nowrap on desktop
+          flexWrap: "wrap", // ✅ Always wrap for responsiveness
           alignItems: "stretch", // all cards equal height
         }}
         component={motion.div}
@@ -89,24 +114,24 @@ const Achievements = () => {
             <Card
               component={motion.div}
               whileHover={{
-                scale: 1.08,
-                rotateX: 8, // ✅ 3D tilt effect
-                rotateY: -8,
-                boxShadow: "0 20px 50px rgba(0,0,0,0.7)",
+                scale: 1.05,
+                rotateX: 6, // ✅ subtle 3D tilt
+                rotateY: -6,
+                boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
               }}
-              transition={{ type: "spring", stiffness: 200, damping: 12 }}
+              transition={{ type: "spring", stiffness: 200, damping: 15 }}
               sx={{
-                bgcolor: "#121e36",
+                bgcolor: "white",
                 borderRadius: 3,
                 height: "100%",
                 width: "100%",
-                boxShadow: "0 6px 20px rgba(0,0,0,0.3)",
+                boxShadow: "0 6px 20px rgba(0,0,0,0.1)",
                 textAlign: "center",
                 p: 2,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
-                transformStyle: "preserve-3d", // ✅ enables 3D effect
+                transformStyle: "preserve-3d",
                 perspective: "1000px",
               }}
             >
@@ -118,10 +143,10 @@ const Achievements = () => {
                 >
                   {item.number}
                 </Typography>
-                <Typography variant="h6" fontWeight="bold" color="white">
+                <Typography variant="h6" fontWeight="bold" color="black">
                   {item.title}
                 </Typography>
-                <Typography variant="body2" color="grey.400">
+                <Typography variant="body2" sx={{ color: "grey.600" }}>
                   {item.desc}
                 </Typography>
               </CardContent>

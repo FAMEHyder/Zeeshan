@@ -24,6 +24,7 @@ const itemVariants = {
 
 function HeroSection() {
   return (
+    
     <Box
       component={motion.div}
       initial="hidden"
@@ -43,7 +44,6 @@ function HeroSection() {
         backgroundPosition: "center",
         color: "#fff",
         perspective: "1000px",
-        borderRadius:'0 0 50px 50px'
       }}
     >
       {/* Title */}
