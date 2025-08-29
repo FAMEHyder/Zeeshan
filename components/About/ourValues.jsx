@@ -14,25 +14,25 @@ const OurValues = () => {
       title: "Innovation",
       text: "Pushing boundaries with cutting-edge solutions and creative problem-solving.",
       icon: <RocketLaunchIcon sx={{ fontSize: { xs: 35, md: 40 } }} />,
-      bg: "linear-gradient(135deg, #1e3a8a, #2563eb)", // navy → royal blue
+      bg: "linear-gradient(135deg, #a5d8ff, #60a5fa)", // pastel → sky blue
     },
     {
       title: "Excellence",
       text: "Delivering high-quality solutions that exceed expectations.",
       icon: <StarIcon sx={{ fontSize: { xs: 35, md: 40 } }} />,
-      bg: "linear-gradient(135deg, #2563eb, #3b82f6)", // royal blue → bright blue
+      bg: "linear-gradient(135deg, #a5d8ff, #60a5fa)", // pastel → sky blue
     },
     {
       title: "Collaboration",
       text: "Working together to achieve remarkable results.",
       icon: <HandshakeIcon sx={{ fontSize: { xs: 35, md: 40 } }} />,
-      bg: "linear-gradient(135deg, #1d4ed8, #60a5fa)", // indigo → sky blue
+      bg: "linear-gradient(135deg, #a5d8ff, #60a5fa)", // pastel → sky blue
     },
     {
       title: "Integrity",
       text: "Building trust through honesty and transparency.",
       icon: <CircleIcon sx={{ fontSize: { xs: 35, md: 40 } }} />,
-      bg: "linear-gradient(135deg, #1e3a8a, #2563eb)", // navy → royal blue
+      bg: "linear-gradient(135deg, #a5d8ff, #60a5fa)", // pastel → sky blue
     },
   ];
 
@@ -58,10 +58,10 @@ const OurValues = () => {
         variant="h3"
         fontWeight={800}
         sx={{
-            color: "#0b147fff",
+          color: "#0b147f",
           mb: { xs: 4, md: 6 },
           textAlign: "center",
-            fontFamily: "Poppins, sans-serif",
+          fontFamily: "Poppins, sans-serif",
         }}
       >
         Our Values
@@ -98,10 +98,10 @@ const OurValues = () => {
                 alignItems: "center",
                 justifyContent: "center",
                 textAlign: "center",
-                color: "#fff",
+                color: "#0b147f", // dark navy text for contrast
                 p: { xs: 2, md: 3 },
                 fontWeight: 400,
-                boxShadow: "0 4px 15px rgba(0,0,0,0.4)",
+                boxShadow: "0 4px 15px rgba(0,0,0,0.15)", // softer shadow for light look
                 transition: "transform 0.3s ease",
                 "&:hover": {
                   transform: "translateY(-8px) scale(1.03)",
@@ -110,7 +110,7 @@ const OurValues = () => {
               }}
             >
               {/* Icon */}
-              <Box sx={{ mb: 1, color: "white" }}>{item.icon}</Box>
+              <Box sx={{ mb: 1, color: "#2563eb" }}>{item.icon}</Box>
 
               {/* Title */}
               <Typography
