@@ -88,36 +88,48 @@ export default function Services() {
       icon: <PhoneIphoneIcon sx={{ fontSize: 50, color: "#10b981" }} />,
       title: "Mobile Development",
       body: [
-        { text: "iOS & Android Apps" },
-        { text: "React Native" },
-        { text: "Flutter" },
+        { text: "iOS & Android Development" },
+        { text: "React Native Applications" },
+        { text: "Flutter Development" },
+        { text: "Mobile UI/UX Design" },
+        { text: "App Store Optimization" },
+        { text: "Mobile Backend Development" },
       ],
     },
     {
       icon: <CloudIcon sx={{ fontSize: 50, color: "#0ea5e9" }} />,
       title: "Cloud Services",
       body: [
-        { text: "AWS & Azure" },
-        { text: "Serverless Functions" },
+        { text: "Cloud Architecture Design" },
+        { text: "AWS & Azure Solutions" },
+        { text: "Serverless Applications" },
+        { text: "Container Orchestration" },
         { text: "Cloud Security" },
+        { text: "DevOps Implementation" },
       ],
     },
     {
       icon: <BlockchainIcon sx={{ fontSize: 50, color: "#eab308" }} />,
       title: "Blockchain Development",
       body: [
-        { text: "Smart Contracts" },
-        { text: "Crypto Wallets" },
+        { text: "Smart Contract Development" },
+        { text: "DeFi Applications" },
         { text: "NFT Platforms" },
+        { text: "Blockchain Integration" },
+        { text: "Cryptocurrency Solutions" },
+        { text: "Web3 Development" },
       ],
     },
     {
       icon: <DevicesOtherIcon sx={{ fontSize: 50, color: "#f43f5e" }} />,
       title: "IoT Solutions",
       body: [
-        { text: "Smart Devices" },
-        { text: "IoT Dashboards" },
-        { text: "Remote Monitoring" },
+        { text: "IoT Architecture Design" },
+        { text: "Sensor Integration" },
+        { text: "Real-time Monitoring" },
+        { text: "Edge Computing" },
+        { text: "IoT Security" },
+        { text: "Data Analytics" },
       ],
     },
   ];
@@ -132,7 +144,11 @@ export default function Services() {
       }}
     >
       <Box textAlign="center" mb={6}>
-        <Typography variant="h4" fontWeight="bold" gutterBottom>
+        <Typography variant="h4" fontWeight="bold" gutterBottom
+        sx={{
+            mt:{xs:1,sm:1,md:8}
+        }}
+        >
           Our Services
         </Typography>
       </Box>
@@ -171,7 +187,7 @@ export default function Services() {
                 </Typography>
                 <List dense>
                   {service.body.map((item, idx) => (
-                    <ListItem key={idx} sx={{ justifyContent: "center", p: 0 }}>
+                    <ListItem key={idx} sx={{ justifyContent: "left", p: 0 }}>
                       <ListItemIcon sx={{ minWidth: 28 }}>
                         <CheckCircleIcon sx={{ color: "#22d3ee", fontSize: 18 }} />
                       </ListItemIcon>
