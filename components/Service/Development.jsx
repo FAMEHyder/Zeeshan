@@ -54,11 +54,10 @@ export default function DevelopmentProcess() {
           gap: 3,
           overflowX: "auto",
           pb: 2,
-          heigth:'200vh',
+          heigth: '200vh',
           "&::-webkit-scrollbar": { display: "none" }, // hide scrollbar
-            border:"2px solid red",
 
-          
+
         }}
       >
         {steps.map((step, index) => (
@@ -78,14 +77,14 @@ export default function DevelopmentProcess() {
                 bgcolor: "#1b263b",
                 borderRadius: 3,
                 minHeight: 220,
-                width:270,
+                width: 270,
                 transition: "0.3s",
-
+                overflow: "visible",
                 "&:hover": { boxShadow: "0 8px 20px rgba(0,0,0,0.5)" },
-                
+
               }}
             >
-                
+
               {/* Step number circle */}
               <Box
                 sx={{
@@ -101,8 +100,8 @@ export default function DevelopmentProcess() {
                   justifyContent: "center",
                   fontWeight: "bold",
                   boxShadow: 3,
-                  mt:3,
-                  zIndex:1,
+                  mt: 3,
+                  zIndex: 10, // 👈 ensure circle is above
                 }}
               >
                 {step.number}
