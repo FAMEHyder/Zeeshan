@@ -10,6 +10,8 @@ const page = () => {
       <Product />
       <Dynamic />
       <GetyourBusiness />
+
+      
     </div>
   )
 }

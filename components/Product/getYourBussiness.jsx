@@ -78,8 +78,7 @@ const GetYourBusiness = () => {
             maxWidth="800px"
             mx="auto"
           >
-            Let's discuss how our services can help you achieve your digital transformation goals.
-          </Typography>
+            Get started with our innovative solutions and take your business to the next level.          </Typography>
         </Grid>
 
         {/* Buttons */}
@@ -109,7 +108,25 @@ const GetYourBusiness = () => {
                 width: { xs: "100%", sm: "auto" }, // full width on mobile
               }}
             >
-              Get Started
+              Contact Sales
+            </Button>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button
+              variant="contained"
+              sx={{
+                bgcolor: "white",
+                px: { xs: 4, sm: 5 },
+                py: { xs: 1.3, sm: 1.5 },
+                fontSize: { xs: "0.9rem", sm: "1rem" },
+                fontWeight: 600,
+                borderRadius: "10px",
+                textTransform: "none",
+                color:'black',
+                width: { xs: "100%", sm: "auto" }, // full width on mobile
+              }}
+            >
+              View Services
             </Button>
           </motion.div>
         </Box>
