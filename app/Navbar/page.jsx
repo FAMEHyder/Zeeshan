@@ -48,7 +48,7 @@ function Header() {
     { label: "Home", icon: <HomeIcon sx={{ fontSize: 20 }} />, path: "/" },
     { label: "About", icon: <InfoIcon sx={{ fontSize: 20 }} />, path: "/About" },
     { label: "Service", icon: <BuildIcon sx={{ fontSize: 20 }} />, path: "/Service" },
-    { label: "Product", icon: <ShoppingCartIcon sx={{ fontSize: 20 }} />, path: "/product" },
+    { label: "Product", icon: <ShoppingCartIcon sx={{ fontSize: 20 }} />, path: "/Product" },
     { label: "Portfolio", icon: <WorkIcon sx={{ fontSize: 20 }} />, path: "/portfolio" },
     { label: "Career", icon: <SchoolIcon sx={{ fontSize: 20 }} />, path: "/career" },
     { label: "Contact", icon: <ContactMailIcon sx={{ fontSize: 20 }} />, path: "/contact" },
