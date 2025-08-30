@@ -12,7 +12,7 @@ const AboutSection = () => {
                 minHeight: "90vh",
                 width: "100%",
                 background: `
-      linear-gradient(135deg, #6d90c4ff 0%, #79a6efff 100%),
+      linear-gradient(135deg, #233262ff 0%, #0a429cff 100%),
       url("https://www.transparenttextures.com/patterns/cubes.png")
     `,
                 backgroundRepeat: "repeat",
@@ -46,7 +46,7 @@ const AboutSection = () => {
                         },
                         lineHeight: 1.2,
                         fontWeight: 800,
-                        color: "#0b147fff",
+                        color: "white",
                         fontFamily: "Poppins, sans-serif",
                     }}
                 >
@@ -56,7 +56,7 @@ const AboutSection = () => {
                             "Smart Development for Modern Needs",
                             "Turning Ideas Into Reality"
                         ]}
-                        typeSpeed={100}     // speed of typing
+                        typeSpeed={150}     // speed of typing
                         backSpeed={30}     // speed of backspacing
                         loop               // keeps looping
                     />
@@ -81,7 +81,7 @@ const AboutSection = () => {
                             md: "1.3rem",
                             lg: "1.5rem",
                         },
-                        color: "#103b70ff",
+                        color: "lightgray",
                         fontFamily: "Poppins, sans-serif",
                     }}
                 >

@@ -77,7 +77,7 @@ export default function SolutionsSection({ isMobile }) {
     <Grid
       width={"100%"}
       sx={{
-        height: { xs: "200vh", sm: "210vh", md: "130vh" },
+        height: { xs: "200vh", sm: "210vh", md: "100vh" },
         
       }}
     >
