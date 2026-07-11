@@ -146,6 +146,10 @@ export function Contact() {
                 <FaLinkedinIn className="h-4 w-4" /> LinkedIn
               </a>
             </div>
+
+            <p className="pt-1 text-center text-xs text-muted-foreground">
+              References available upon request.
+            </p>
           </motion.div>
 
           <motion.form

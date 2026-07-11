@@ -14,12 +14,16 @@ import {
   SiFigma,
   SiVercel,
   SiNpm,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
 } from "react-icons/si";
 import { RiNextjsFill } from "react-icons/ri";
 import { VscVscode } from "react-icons/vsc";
-import { Code2 } from "lucide-react";
+import { Code2, Webhook, BrainCircuit, FlaskConical, FileSpreadsheet, type LucideProps } from "lucide-react";
+import type { ComponentType } from "react";
 
-const iconMap: Record<string, IconType> = {
+const iconMap: Record<string, IconType | ComponentType<LucideProps>> = {
   html5: SiHtml5,
   css3: SiCss,
   javascript: SiJavascript,
@@ -36,6 +40,13 @@ const iconMap: Record<string, IconType> = {
   vercel: SiVercel,
   vscode: VscVscode,
   npm: SiNpm,
+  nodejs: SiNodedotjs,
+  express: SiExpress,
+  mongodb: SiMongodb,
+  api: Webhook,
+  aitraining: BrainCircuit,
+  scientificworkplace: FlaskConical,
+  msoffice: FileSpreadsheet,
 };
 
 interface TechIconProps {

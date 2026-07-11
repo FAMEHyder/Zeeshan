@@ -9,11 +9,12 @@ import { cn } from "@/lib/utils";
 
 const tabs = [
   { id: "frontend", label: "Frontend" },
+  { id: "backend", label: "Backend" },
   { id: "tools", label: "Tools" },
 ] as const;
 
 export function Skills() {
-  const [activeTab, setActiveTab] = useState<"frontend" | "tools">("frontend");
+  const [activeTab, setActiveTab] = useState<"frontend" | "backend" | "tools">("frontend");
   const filtered = skills.filter((skill) => skill.category === activeTab);
 
   return (

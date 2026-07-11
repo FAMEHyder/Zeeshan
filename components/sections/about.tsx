@@ -9,6 +9,8 @@ import { TechIcon } from "@/components/shared/tech-icon";
 import {
   aboutHighlights,
   enjoyedTech,
+  fieldsOfInterest,
+  languages,
   personalInfo,
   strengths,
 } from "@/data/personal";
@@ -90,6 +92,38 @@ export function About() {
                     >
                       <TechIcon name={tech.icon} className="h-4 w-4" />
                       {tech.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.25}>
+              <div>
+                <h4 className="mb-3 font-heading text-lg font-semibold">Fields of Interest</h4>
+                <div className="flex flex-wrap gap-3">
+                  {fieldsOfInterest.map((interest) => (
+                    <span
+                      key={interest}
+                      className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground"
+                    >
+                      {interest}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.3}>
+              <div>
+                <h4 className="mb-3 font-heading text-lg font-semibold">Languages</h4>
+                <div className="flex flex-wrap gap-3">
+                  {languages.map((language) => (
+                    <span
+                      key={language}
+                      className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground"
+                    >
+                      {language}
                     </span>
                   ))}
                 </div>

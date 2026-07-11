@@ -1,23 +1,24 @@
 export const siteConfig = {
-  name: "Arjun Mehta | Frontend Developer",
-  shortName: "Arjun Mehta",
-  title: "Arjun Mehta — Frontend Developer Portfolio",
+  name: "Zeeshan Haider | Full-Stack Developer",
+  shortName: "Zeeshan Haider",
+  title: "Zeeshan Haider — Full-Stack Developer Portfolio",
   description:
-    "Portfolio of Arjun Mehta, a frontend developer specializing in React, Next.js, TypeScript and Tailwind CSS. Building fast, accessible and beautiful web experiences.",
-  url: "https://arjunmehta.dev",
+    "Portfolio of Zeeshan Haider, a full-stack developer specializing in the MERN stack, Next.js and TypeScript. Building fast, accessible and beautiful web experiences.",
+  // TODO: replace with your real deployed domain once you have one.
+  url: "https://zeeshanhaider.vercel.app",
   ogImage: "/images/og-image.png",
   keywords: [
-    "Arjun Mehta",
-    "Frontend Developer",
+    "Zeeshan Haider",
+    "Full-Stack Developer",
+    "MERN Stack Developer",
     "React Developer",
     "Next.js Developer",
     "Web Developer Portfolio",
-    "UI/UX Developer",
     "TypeScript Developer",
     "Tailwind CSS Developer",
   ],
-  author: "Arjun Mehta",
-  twitterHandle: "@arjunmehta",
+  author: "Zeeshan Haider",
+  twitterHandle: "@zeeshanhaider",
   locale: "en_US",
 };
 

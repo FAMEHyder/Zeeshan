@@ -44,29 +44,7 @@ export interface Skill {
   name: string;
   icon: string;
   level: number; // 0 - 100
-  category: "frontend" | "tools";
-}
-
-export type ProjectCategory =
-  | "React"
-  | "Next.js"
-  | "UI/UX"
-  | "Landing Pages"
-  | "Portfolio"
-  | "Dashboard";
-
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  longDescription: string;
-  image: string;
-  categories: ProjectCategory[];
-  technologies: string[];
-  features: string[];
-  liveUrl?: string;
-  githubUrl?: string;
-  featured?: boolean;
+  category: "frontend" | "backend" | "tools";
 }
 
 export interface Service {
@@ -97,15 +75,6 @@ export interface Certification {
   credentialUrl?: string;
 }
 
-export interface Testimonial {
-  id: string;
-  name: string;
-  role: string;
-  avatar: string;
-  review: string;
-  rating: number; // 1 - 5
-}
-
 export interface TechStackItem {
   name: string;
   icon: string;
@@ -117,4 +86,12 @@ export interface Statistic {
   label: string;
   value: number;
   suffix?: string;
+}
+
+export interface Publication {
+  id: string;
+  title: string;
+  journal: string;
+  authors: string;
+  status: string;
 }

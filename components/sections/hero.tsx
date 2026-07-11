@@ -74,8 +74,8 @@ export function Hero() {
             className="flex flex-wrap items-center gap-3"
           >
             <Button asChild size="lg" className="rounded-full">
-              <Link href="#projects">
-                View Projects
+              <Link href="#experience">
+                View Experience
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -140,7 +140,7 @@ export function Hero() {
             className="glass absolute -left-6 bottom-8 hidden rounded-2xl px-4 py-3 shadow-lg sm:block"
           >
             <p className="text-xs text-muted-foreground">Experience</p>
-            <p className="font-heading text-lg font-bold text-gradient-brand">3+ Years</p>
+            <p className="font-heading text-lg font-bold text-gradient-brand">8+ Months</p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, x: 10 }}
@@ -148,8 +148,8 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="glass absolute -right-4 top-6 hidden rounded-2xl px-4 py-3 shadow-lg sm:block"
           >
-            <p className="text-xs text-muted-foreground">Projects</p>
-            <p className="font-heading text-lg font-bold text-gradient-brand">42+ Done</p>
+            <p className="text-xs text-muted-foreground">Focus</p>
+            <p className="font-heading text-lg font-bold text-gradient-brand">MERN Stack</p>
           </motion.div>
         </motion.div>
       </div>

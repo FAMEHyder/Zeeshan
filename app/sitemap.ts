@@ -6,11 +6,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "#about",
     "#skills",
-    "#projects",
     "#services",
     "#experience",
     "#certifications",
-    "#testimonials",
+    "#research",
     "#contact",
   ];
 

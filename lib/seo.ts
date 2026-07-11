@@ -64,10 +64,10 @@ export function personJsonLd() {
     "@type": "Person",
     name: siteConfig.author,
     url: siteConfig.url,
-    jobTitle: "Frontend Developer",
+    jobTitle: "Full-Stack Developer",
     image: `${siteConfig.url}/images/profile-avatar.png`,
     sameAs: [
-      "https://github.com/",
+      "https://github.com/FAMEHyder",
       "https://linkedin.com/",
       "https://x.com/",
       "https://facebook.com/",
@@ -75,10 +75,12 @@ export function personJsonLd() {
     knowsAbout: [
       "React",
       "Next.js",
+      "Node.js",
+      "Express",
+      "MongoDB",
       "TypeScript",
       "Tailwind CSS",
-      "Frontend Development",
-      "UI/UX",
+      "Full-Stack Development",
     ],
   };
 }
