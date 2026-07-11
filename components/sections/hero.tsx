@@ -73,24 +73,41 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-wrap items-center gap-3"
           >
-            <Button asChild size="lg" className="rounded-full">
-              <Link href="#experience">
-                View Experience
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="rounded-full">
-              <a href={personalInfo.resumeUrl} download>
-                Download Resume
-                <Download className="h-4 w-4" />
-              </a>
-            </Button>
-            <Button asChild variant="ghost" size="lg" className="rounded-full">
-              <Link href="#contact">
-                Contact Me
-                <MessageSquare className="h-4 w-4" />
-              </Link>
-            </Button>
+            <Button
+              size="lg"
+              className="rounded-full"
+              nativeButton={false}
+              render={
+                <Link href="#experience">
+                  View Experience
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              }
+            />
+            <Button
+              variant="outline"
+              size="lg"
+              className="rounded-full"
+              nativeButton={false}
+              render={
+                <a href={personalInfo.resumeUrl} download>
+                  Download Resume
+                  <Download className="h-4 w-4" />
+                </a>
+              }
+            />
+            <Button
+              variant="ghost"
+              size="lg"
+              className="rounded-full"
+              nativeButton={false}
+              render={
+                <Link href="#contact">
+                  Contact Me
+                  <MessageSquare className="h-4 w-4" />
+                </Link>
+              }
+            />
           </motion.div>
 
           <motion.div

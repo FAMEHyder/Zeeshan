@@ -73,9 +73,12 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <Button asChild size="sm" className="hidden rounded-full sm:inline-flex">
-            <Link href="#contact">Let&apos;s Talk</Link>
-          </Button>
+          <Button
+            size="sm"
+            className="hidden rounded-full sm:inline-flex"
+            nativeButton={false}
+            render={<Link href="#contact">Let&apos;s Talk</Link>}
+          />
           <Button
             variant="ghost"
             size="icon"

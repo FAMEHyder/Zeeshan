@@ -16,18 +16,29 @@ export default function NotFound() {
         you back on track.
       </p>
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-        <Button asChild size="lg" className="rounded-full">
-          <Link href="/">
-            <Home className="h-4 w-4" />
-            Back to Home
-          </Link>
-        </Button>
-        <Button asChild variant="outline" size="lg" className="rounded-full">
-          <Link href="/#contact">
-            <ArrowLeft className="h-4 w-4" />
-            Contact Me
-          </Link>
-        </Button>
+        <Button
+          size="lg"
+          className="rounded-full"
+          nativeButton={false}
+          render={
+            <Link href="/">
+              <Home className="h-4 w-4" />
+              Back to Home
+            </Link>
+          }
+        />
+        <Button
+          variant="outline"
+          size="lg"
+          className="rounded-full"
+          nativeButton={false}
+          render={
+            <Link href="/#contact">
+              <ArrowLeft className="h-4 w-4" />
+              Contact Me
+            </Link>
+          }
+        />
       </div>
     </main>
   );
