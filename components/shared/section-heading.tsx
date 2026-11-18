@@ -25,7 +25,8 @@ export function SectionHeading({
       )}
     >
       <Reveal>
-        <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary">
+        <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary shadow-[0_0_15px_var(--glow-primary)]">
+          <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
           {eyebrow}
         </span>
       </Reveal>

@@ -94,4 +94,6 @@ export interface Publication {
   journal: string;
   authors: string;
   status: string;
+  url: string;
+  scholarUrl?: string;
 }

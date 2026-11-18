@@ -34,15 +34,15 @@ export function Navbar() {
       <div
         className={cn(
           "section-container flex items-center justify-between rounded-2xl px-4 py-2.5 transition-all duration-300 sm:px-6",
-          scrolled && "glass shadow-lg shadow-black/5"
+          scrolled && "glass shadow-xl shadow-black/10 border border-primary/20 backdrop-blur-xl"
         )}
       >
         <Link
           href="#home"
-          className="font-heading text-lg font-bold tracking-tight"
+          className="font-heading text-lg font-bold tracking-tight transition-transform hover:scale-105"
           aria-label="Go to home section"
         >
-          <span className="text-gradient-brand">{`<${personalInfo.initials}/>`}</span>
+          <span className="text-gradient-brand drop-shadow-[0_0_12px_var(--glow-primary)]">{`<${personalInfo.initials}/>`}</span>
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
@@ -55,13 +55,13 @@ export function Navbar() {
                 href={link.href}
                 className={cn(
                   "relative rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
-                  isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  isActive ? "text-foreground font-semibold" : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 {isActive && (
                   <motion.span
                     layoutId="nav-active-pill"
-                    className="absolute inset-0 -z-10 rounded-full bg-primary/10"
+                    className="absolute inset-0 -z-10 rounded-full bg-primary/15 border border-primary/30 shadow-[0_0_15px_var(--glow-primary)]"
                     transition={{ type: "spring", stiffness: 350, damping: 30 }}
                   />
                 )}
@@ -75,7 +75,7 @@ export function Navbar() {
           <ThemeToggle />
           <Button
             size="sm"
-            className="hidden rounded-full sm:inline-flex"
+            className="hidden rounded-full sm:inline-flex shadow-md shadow-primary/25 hover:shadow-[0_0_20px_var(--glow-primary)] transition-all"
             nativeButton={false}
             render={<Link href="#contact">Let&apos;s Talk</Link>}
           />
@@ -101,7 +101,7 @@ export function Navbar() {
             className="section-container mt-2 lg:hidden"
           >
             <nav
-              className="glass flex flex-col gap-1 rounded-2xl p-3 shadow-lg"
+              className="glass flex flex-col gap-1 rounded-2xl p-3 shadow-2xl border border-primary/20 backdrop-blur-xl"
               aria-label="Mobile navigation"
             >
               {navLinks.map((link) => {
@@ -115,7 +115,7 @@ export function Navbar() {
                     className={cn(
                       "rounded-xl px-4 py-2.5 text-sm font-medium transition-colors",
                       isActive
-                        ? "bg-primary/10 text-foreground"
+                        ? "bg-primary/15 text-foreground border border-primary/30 shadow-[0_0_12px_var(--glow-primary)]"
                         : "text-muted-foreground hover:bg-muted hover:text-foreground"
                     )}
                   >
