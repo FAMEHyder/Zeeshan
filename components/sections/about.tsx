@@ -176,7 +176,7 @@ export function About() {
                 </p>
                 <p className="pl-4">
                   <span className="text-muted-foreground">experience:</span>{" "}
-                  <span className="text-cyan-400">&quot;8+ Months @ NetBots&quot;</span>,
+                  <span className="text-cyan-400">&quot;2+ years&quot;</span>,
                 </p>
                 <p className="pl-4">
                   <span className="text-muted-foreground">coreStack:</span> [
