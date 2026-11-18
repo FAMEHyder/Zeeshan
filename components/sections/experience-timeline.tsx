@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { LucideIcon } from "@/components/shared/lucide-icon";
 import { SpotlightCard } from "@/components/shared/spotlight-card";
@@ -23,6 +24,26 @@ const typeLabels: Record<string, string> = {
 };
 
 export function ExperienceTimeline() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Track scroll progress through the timeline container
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 75%", "end 60%"],
+  });
+
+  // Smooth buttery spring physics for the light beam
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 25,
+    restDelta: 0.001,
+  });
+
+  // Dynamic light beam height and traveling orb position
+  const lineHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
+  const lightTop = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
+  const lightOpacity = useTransform(smoothProgress, [0, 0.02, 0.98, 1], [0, 1, 1, 0.9]);
+
   return (
     <section id="experience" className="relative py-24 sm:py-32 overflow-hidden">
       {/* Ambient background lighting */}
@@ -35,9 +56,42 @@ export function ExperienceTimeline() {
           description="A timeline of my education, courses and freelance work that shaped who I am as a developer today."
         />
 
-        <div className="relative mx-auto max-w-3xl">
-          {/* Luminous Glowing Timeline Bar */}
-          <div className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-primary via-accent to-transparent sm:left-1/2 shadow-[0_0_8px_var(--glow-primary)]" />
+        <div ref={containerRef} className="relative mx-auto max-w-3xl">
+          {/* Base dim guide track line */}
+          <div className="absolute left-[26px] top-0 h-full w-[2px] -translate-x-1/2 bg-border/40 dark:bg-muted/40 sm:left-1/2" />
+
+          {/* Active Glowing Wide Aura Line (Scroll-driven) */}
+          <motion.div
+            style={{ height: lineHeight }}
+            className="pointer-events-none absolute left-[26px] top-0 w-[8px] -translate-x-1/2 bg-gradient-to-b from-primary via-accent to-cyan-400 sm:left-1/2 blur-[4px] opacity-80 origin-top z-10"
+          />
+
+          {/* Active Solid Core Light Beam (Scroll-driven) with continuous flowing laser pulse */}
+          <motion.div
+            style={{ height: lineHeight }}
+            className="pointer-events-none absolute left-[26px] top-0 w-[2.5px] -translate-x-1/2 bg-gradient-to-b from-primary via-accent to-cyan-400 sm:left-1/2 shadow-[0_0_12px_var(--glow-primary),0_0_20px_var(--glow-accent)] origin-top z-10 overflow-hidden"
+          >
+            {/* Shimmer pulse traveling down the line continuously */}
+            <motion.div
+              animate={{ y: ["-100%", "400%"] }}
+              transition={{ repeat: Infinity, duration: 2.5, ease: "linear" }}
+              className="absolute inset-x-0 h-32 w-full bg-gradient-to-b from-transparent via-white/90 to-transparent"
+            />
+          </motion.div>
+
+          {/* Traveling Glowing Light Orb / Laser Tip riding the scroll edge */}
+          <motion.div
+            style={{ top: lightTop, opacity: lightOpacity }}
+            className="pointer-events-none absolute left-[26px] -translate-x-1/2 -translate-y-1/2 sm:left-1/2 z-20"
+          >
+            <div className="relative flex items-center justify-center">
+              {/* Outer Pulsing Flare */}
+              <span className="absolute h-9 w-9 rounded-full bg-cyan-400/40 blur-md animate-pulse" />
+              <span className="absolute h-5 w-5 rounded-full bg-primary/70 blur-[2px]" />
+              {/* White-Hot Core Spark */}
+              <span className="relative h-3.5 w-3.5 rounded-full bg-white ring-2 ring-cyan-300 shadow-[0_0_14px_#38bdf8,0_0_28px_#0284c7,0_0_42px_#a855f7]" />
+            </div>
+          </motion.div>
 
           <div className="flex flex-col gap-10">
             {timelineItems.map((item, index) => {
