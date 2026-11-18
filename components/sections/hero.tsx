@@ -10,6 +10,8 @@ import { SocialIcon } from "@/components/shared/social-icon";
 import { personalInfo, socialLinks } from "@/data/personal";
 import { useTypingEffect } from "@/hooks/useTypingEffect";
 
+
+
 export function Hero() {
   const typedText = useTypingEffect({ words: personalInfo.roles });
 
