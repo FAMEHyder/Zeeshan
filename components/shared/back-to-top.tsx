@@ -24,9 +24,9 @@ export function BackToTop() {
           initial={{ opacity: 0, y: 20, scale: 0.8 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 20, scale: 0.8 }}
-          whileHover={{ scale: 1.08 }}
+          whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.94 }}
-          className="fixed bottom-6 right-5 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-gradient-brand text-white shadow-lg shadow-primary/30 sm:bottom-8 sm:right-8"
+          className="fixed bottom-6 right-5 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-gradient-brand text-white shadow-xl shadow-primary/35 hover:shadow-[0_0_30px_var(--glow-primary)] transition-shadow sm:bottom-8 sm:right-8"
         >
           <ArrowUp className="h-5 w-5" />
         </motion.button>

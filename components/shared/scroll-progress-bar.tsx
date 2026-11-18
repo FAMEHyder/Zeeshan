@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useSpring } from "framer-motion";
 
-/** Thin gradient progress bar fixed to the top of the viewport, tracking scroll depth. */
+/** Thin gradient progress bar fixed to the top of the viewport, tracking scroll depth with a luminous glow. */
 export function ScrollProgressBar() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -13,7 +13,7 @@ export function ScrollProgressBar() {
 
   return (
     <motion.div
-      className="fixed left-0 top-0 z-[60] h-[3px] w-full origin-left bg-gradient-brand"
+      className="fixed left-0 top-0 z-[60] h-[3px] w-full origin-left bg-gradient-brand shadow-[0_0_12px_var(--glow-primary)]"
       style={{ scaleX }}
     />
   );
