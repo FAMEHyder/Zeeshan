@@ -39,10 +39,8 @@ export function ExperienceTimeline() {
     restDelta: 0.001,
   });
 
-  // Dynamic light beam height and traveling orb position
+  // Dynamic light beam height
   const lineHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
-  const lightTop = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
-  const lightOpacity = useTransform(smoothProgress, [0, 0.02, 0.98, 1], [0, 1, 1, 0.9]);
 
   return (
     <section id="experience" className="relative py-24 sm:py-32 overflow-hidden">
@@ -77,20 +75,6 @@ export function ExperienceTimeline() {
               transition={{ repeat: Infinity, duration: 2.5, ease: "linear" }}
               className="absolute inset-x-0 h-32 w-full bg-gradient-to-b from-transparent via-white/90 to-transparent"
             />
-          </motion.div>
-
-          {/* Traveling Glowing Light Orb / Laser Tip riding the scroll edge */}
-          <motion.div
-            style={{ top: lightTop, opacity: lightOpacity }}
-            className="pointer-events-none absolute left-[26px] -translate-x-1/2 -translate-y-1/2 sm:left-1/2 z-20"
-          >
-            <div className="relative flex items-center justify-center">
-              {/* Outer Pulsing Flare */}
-              <span className="absolute h-9 w-9 rounded-full bg-cyan-400/40 blur-md animate-pulse" />
-              <span className="absolute h-5 w-5 rounded-full bg-primary/70 blur-[2px]" />
-              {/* White-Hot Core Spark */}
-              <span className="relative h-3.5 w-3.5 rounded-full bg-white ring-2 ring-cyan-300 shadow-[0_0_14px_#38bdf8,0_0_28px_#0284c7,0_0_42px_#a855f7]" />
-            </div>
           </motion.div>
 
           <div className="flex flex-col gap-10">

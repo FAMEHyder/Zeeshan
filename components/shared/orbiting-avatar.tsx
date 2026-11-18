@@ -57,12 +57,11 @@ export function OrbitingAvatar({ src, alt, className = "" }: OrbitingAvatarProps
           }}
         />
 
-        {/* Leading Orb Head */}
+        {/* Leading Light Glow Tip (pure light glow, no hard dot) */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div className="relative flex items-center justify-center">
-            <span className="absolute h-9 w-9 rounded-full bg-purple-500/40 blur-md animate-pulse" />
-            <span className="absolute h-5 w-5 rounded-full bg-purple-400/60 blur-[2px]" />
-            <span className="relative h-3.5 w-3.5 sm:h-4 sm:w-4 rounded-full bg-white ring-2 ring-purple-300 shadow-[0_0_14px_#c084fc,0_0_28px_#a855f7,0_0_42px_#9333ea]" />
+            <span className="absolute h-8 w-8 rounded-full bg-purple-500/35 blur-md" />
+            <span className="h-4 w-4 rounded-full bg-purple-400/50 blur-[2px]" />
           </div>
         </div>
       </motion.div>
@@ -99,12 +98,11 @@ export function OrbitingAvatar({ src, alt, className = "" }: OrbitingAvatarProps
           }}
         />
 
-        {/* Leading Orb Head */}
+        {/* Leading Light Glow Tip (pure light glow, no hard dot) */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div className="relative flex items-center justify-center">
-            <span className="absolute h-8 w-8 rounded-full bg-emerald-400/35 blur-md animate-pulse" />
-            <span className="absolute h-4.5 w-4.5 rounded-full bg-emerald-400/60 blur-[2px]" />
-            <span className="relative h-3 w-3 sm:h-3.5 sm:w-3.5 rounded-full bg-white ring-2 ring-emerald-300 shadow-[0_0_12px_#34d399,0_0_24px_#10b981,0_0_36px_#059669]" />
+            <span className="absolute h-7 w-7 rounded-full bg-emerald-400/30 blur-md" />
+            <span className="h-3.5 w-3.5 rounded-full bg-emerald-400/50 blur-[2px]" />
           </div>
         </div>
       </motion.div>
@@ -141,12 +139,11 @@ export function OrbitingAvatar({ src, alt, className = "" }: OrbitingAvatarProps
           }}
         />
 
-        {/* Leading Orb Head */}
+        {/* Leading Light Glow Tip (pure light glow, no hard dot) */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div className="relative flex items-center justify-center">
-            <span className="absolute h-10 w-10 rounded-full bg-cyan-400/40 blur-md animate-pulse" />
-            <span className="absolute h-6 w-6 rounded-full bg-cyan-400/70 blur-[2px]" />
-            <span className="relative h-3.5 w-3.5 sm:h-4 sm:w-4 rounded-full bg-white ring-2 ring-cyan-200 shadow-[0_0_16px_#38bdf8,0_0_30px_#0284c7,0_0_45px_#0ea5e9]" />
+            <span className="absolute h-8 w-8 rounded-full bg-cyan-400/35 blur-md" />
+            <span className="h-4 w-4 rounded-full bg-cyan-400/60 blur-[2px]" />
           </div>
         </div>
       </motion.div>

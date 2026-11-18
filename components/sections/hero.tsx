@@ -150,7 +150,7 @@ export function Hero() {
             className="glass animate-float absolute -left-4 sm:-left-6 bottom-4 sm:bottom-8 hidden rounded-2xl px-4 py-3 shadow-xl sm:block border border-border/80 hover:border-primary/50 hover:shadow-[0_0_20px_var(--glow-primary)] transition-all z-20"
           >
             <p className="text-xs text-muted-foreground">Experience</p>
-            <p className="font-heading text-lg font-bold text-gradient-brand">8+ Months</p>
+            <p className="font-heading text-lg font-bold text-gradient-brand">2+ years</p>
           </motion.div>
 
           {/* Floating Focus Badge with delayed floating animation */}
@@ -161,7 +161,7 @@ export function Hero() {
             className="glass animate-float-delayed absolute -right-2 sm:-right-4 top-4 sm:top-6 hidden rounded-2xl px-4 py-3 shadow-xl sm:block border border-border/80 hover:border-primary/50 hover:shadow-[0_0_20px_var(--glow-accent)] transition-all z-20"
           >
             <p className="text-xs text-muted-foreground">Focus</p>
-            <p className="font-heading text-lg font-bold text-gradient-brand">MERN Stack</p>
+            <p className="font-heading text-lg font-bold text-gradient-brand">MERN Stack + NextJS</p>
           </motion.div>
         </motion.div>
       </div>
