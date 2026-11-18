@@ -27,7 +27,7 @@ export function About() {
 
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal className="relative mx-auto w-full max-w-md lg:mx-0">
-            <div className="absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-brand opacity-15 blur-2xl" />
+            {/* <div className="absolute -inset-4 -z-10 rounded-[2.5rem] bg-gradient-brand opacity-15 blur-2xl" />
             <div className="glass relative aspect-[4/5] overflow-hidden rounded-[2rem] p-2">
               <div className="relative h-full w-full overflow-hidden rounded-[1.5rem]">
                 <Image
@@ -39,7 +39,7 @@ export function About() {
                   className="object-cover"
                 />
               </div>
-            </div>
+            </div> */}
             <div className="mt-6 grid grid-cols-2 gap-4">
               {aboutHighlights.map((item) => (
                 <div key={item.label} className="glass rounded-2xl p-4">
