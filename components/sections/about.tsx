@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import {
   CheckCircle2,
   Code2,
@@ -154,7 +153,7 @@ export function About() {
 
               {/* Code Body */}
               <div className="p-4 sm:p-5 font-mono text-xs sm:text-[13px] leading-relaxed overflow-x-auto text-foreground/90 space-y-1">
-                <p className="text-muted-foreground">// Zeeshan Haider — Developer Blueprint</p>
+                <p className="text-muted-foreground">{"// Zeeshan Haider — Developer Blueprint"}</p>
                 <p>
                   <span className="text-primary font-semibold">export const</span>{" "}
                   <span className="text-accent font-semibold">developer</span> = &#123;

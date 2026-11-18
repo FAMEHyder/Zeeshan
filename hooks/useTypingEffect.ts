@@ -29,8 +29,10 @@ export function useTypingEffect({
     if (!isDeleting && text === currentWord) {
       timeout = setTimeout(() => setIsDeleting(true), pauseTime);
     } else if (isDeleting && text === "") {
-      setIsDeleting(false);
-      setWordIndex((prev) => prev + 1);
+      timeout = setTimeout(() => {
+        setIsDeleting(false);
+        setWordIndex((prev) => prev + 1);
+      }, typingSpeed);
     } else {
       const nextText = isDeleting
         ? currentWord.slice(0, text.length - 1)

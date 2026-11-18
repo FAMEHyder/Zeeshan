@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Download, MessageSquare, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GradientBlobs } from "@/components/shared/gradient-blobs";
+import { OrbitingAvatar } from "@/components/shared/orbiting-avatar";
 import { SocialIcon } from "@/components/shared/social-icon";
 import { personalInfo, socialLinks } from "@/data/personal";
 import { useTypingEffect } from "@/hooks/useTypingEffect";
@@ -135,30 +135,19 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="relative mx-auto aspect-square w-full max-w-sm"
+          className="relative mx-auto aspect-square w-full max-w-[340px] sm:max-w-sm flex items-center justify-center"
         >
-          {/* Pulsing Luminous Light Halo behind portrait */}
-          <div className="absolute inset-0 -z-10 rounded-[2.5rem] bg-gradient-brand opacity-45 blur-3xl animate-glow-pulse" />
-
-          <div className="glass glow-primary relative h-full w-full overflow-hidden rounded-[2.5rem] p-2 border border-primary/30 shadow-2xl">
-            <div className="relative h-full w-full overflow-hidden rounded-[2rem]">
-              <Image
-                src={personalInfo.avatar}
-                alt={`Portrait of ${personalInfo.name}, ${personalInfo.title}`}
-                fill
-                priority
-                sizes="(max-width: 768px) 80vw, 400px"
-                className="object-cover transition-transform duration-700 hover:scale-105"
-              />
-            </div>
-          </div>
+          <OrbitingAvatar
+            src={personalInfo.avatar}
+            alt={`Portrait of ${personalInfo.name}, ${personalInfo.title}`}
+          />
 
           {/* Floating Experience Badge with organic floating animation */}
           <motion.div
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="glass animate-float absolute -left-6 bottom-8 hidden rounded-2xl px-4 py-3 shadow-xl sm:block border border-border/80 hover:border-primary/50 hover:shadow-[0_0_20px_var(--glow-primary)] transition-all"
+            className="glass animate-float absolute -left-4 sm:-left-6 bottom-4 sm:bottom-8 hidden rounded-2xl px-4 py-3 shadow-xl sm:block border border-border/80 hover:border-primary/50 hover:shadow-[0_0_20px_var(--glow-primary)] transition-all z-20"
           >
             <p className="text-xs text-muted-foreground">Experience</p>
             <p className="font-heading text-lg font-bold text-gradient-brand">8+ Months</p>
@@ -169,7 +158,7 @@ export function Hero() {
             initial={{ opacity: 0, x: 10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="glass animate-float-delayed absolute -right-4 top-6 hidden rounded-2xl px-4 py-3 shadow-xl sm:block border border-border/80 hover:border-primary/50 hover:shadow-[0_0_20px_var(--glow-accent)] transition-all"
+            className="glass animate-float-delayed absolute -right-2 sm:-right-4 top-4 sm:top-6 hidden rounded-2xl px-4 py-3 shadow-xl sm:block border border-border/80 hover:border-primary/50 hover:shadow-[0_0_20px_var(--glow-accent)] transition-all z-20"
           >
             <p className="text-xs text-muted-foreground">Focus</p>
             <p className="font-heading text-lg font-bold text-gradient-brand">MERN Stack</p>
