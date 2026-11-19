@@ -112,7 +112,7 @@ export function OrbitingAvatar({ src, alt, className = "" }: OrbitingAvatarProps
       {/* ============================================================== */}
       <motion.div
         animate={{ rotate: [0, 360] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
         className="pointer-events-none absolute -inset-2.5 sm:-inset-3.5 rounded-full"
       >
         {/* Long Glowing Aura Tail (~150° arc trailing in counter-clockwise direction) */}
