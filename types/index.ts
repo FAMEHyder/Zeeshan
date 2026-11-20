@@ -24,6 +24,7 @@ export interface PersonalInfo {
   phone: string;
   whatsapp: string;
   avatar: string;
+  logo?: string;
   resumeUrl: string;
   availableForWork: boolean;
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -39,10 +40,22 @@ export function Navbar() {
       >
         <Link
           href="#home"
-          className="font-heading text-lg font-bold tracking-tight transition-transform hover:scale-105"
+          className="group flex items-center gap-2.5 transition-transform hover:scale-105"
           aria-label="Go to home section"
         >
-          <span className="text-gradient-brand drop-shadow-[0_0_12px_var(--glow-primary)]">{`<${personalInfo.initials}/>`}</span>
+          <div className="relative h-9 w-9 overflow-hidden rounded-full border border-primary/40 p-0.5 shadow-[0_0_15px_var(--glow-primary)]">
+            <Image
+              src={personalInfo.logo || "/images/logo.jpeg"}
+              alt={personalInfo.name}
+              fill
+              sizes="36px"
+              className="rounded-full object-cover"
+              priority
+            />
+          </div>
+          <span className="font-heading text-base font-bold tracking-tight text-foreground transition-colors group-hover:text-primary">
+            {personalInfo.name}
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">

@@ -18,6 +18,7 @@ export const personalInfo: PersonalInfo = {
   phone: "+92 341 7405991",
   whatsapp: "+923417405991",
   avatar: "/images/profile-avatar.png",
+  logo: "/images/logo.jpeg",
   resumeUrl: "/resume/Zeeshan-Haider-CV.pdf",
   availableForWork: true,
 };

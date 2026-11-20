@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Heart } from "lucide-react";
 import { SocialIcon } from "@/components/shared/social-icon";
 import { navLinks, personalInfo, socialLinks } from "@/data/personal";
@@ -11,8 +12,19 @@ export function Footer() {
       <div className="section-container flex flex-col gap-10 py-12">
         <div className="flex flex-col items-center gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex flex-col items-center gap-3 sm:items-start">
-            <Link href="#home" className="font-heading text-xl font-bold">
-              <span className="text-gradient-brand">{`<${personalInfo.initials}/>`}</span>
+            <Link href="#home" className="group flex items-center gap-3 transition-transform hover:scale-105">
+              <div className="relative h-10 w-10 overflow-hidden rounded-full border border-primary/40 p-0.5 shadow-[0_0_15px_var(--glow-primary)]">
+                <Image
+                  src={personalInfo.logo || "/images/logo.jpeg"}
+                  alt={personalInfo.name}
+                  width={40}
+                  height={40}
+                  className="rounded-full object-cover"
+                />
+              </div>
+              <span className="font-heading text-xl font-bold text-foreground transition-colors group-hover:text-primary">
+                {personalInfo.name}
+              </span>
             </Link>
             <p className="max-w-xs text-center text-sm text-muted-foreground sm:text-left">
               {personalInfo.title} crafting fast, accessible and beautiful web experiences.
