@@ -67,10 +67,10 @@ export function OrbitingAvatar({ src, alt, className = "" }: OrbitingAvatarProps
       </motion.div>
 
       {/* ============================================================== */}
-      {/* LIGHT 3: Emerald / Mint (Middle Track - Clockwise, 14s, 140° offset) */}
+      {/* LIGHT 3: Emerald / Mint (Middle Track - Clockwise, 14s, 180° offset) */}
       {/* ============================================================== */}
       <motion.div
-        animate={{ rotate: [140, 500] }}
+        animate={{ rotate: [180, 540] }}
         transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
         className="pointer-events-none absolute -inset-5 sm:-inset-6.5 rounded-full"
       >

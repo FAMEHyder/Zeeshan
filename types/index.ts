@@ -98,3 +98,16 @@ export interface Publication {
   url: string;
   scholarUrl?: string;
 }
+
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  url: string;
+  image: string;
+  tags: string[];
+  featured?: boolean;
+  status?: string;
+  allowsIframe?: boolean;
+}
