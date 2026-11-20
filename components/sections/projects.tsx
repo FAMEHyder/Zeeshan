@@ -140,18 +140,31 @@ function ProjectBrowserCard({ project, index }: { project: Project; index: numbe
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className={cn(
-                  "object-cover object-top transition-all duration-700 group-hover/preview:scale-[1.03]",
+                  "object-cover object-top transition-[object-position] ease-in-out group-hover:object-bottom group-hover/preview:object-bottom",
                   isRefreshing ? "opacity-30 blur-sm scale-95" : "opacity-100 blur-0"
                 )}
+                style={{
+                  transitionProperty: "object-position, opacity, filter",
+                  transitionDuration: "7s",
+                  transitionTimingFunction: "ease-in-out",
+                }}
                 priority={index === 0}
               />
 
+              {/* Auto-scroll active indicator */}
+              <div className="pointer-events-none absolute top-3 right-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-10">
+                <span className="flex items-center gap-1.5 rounded-full border border-primary/30 bg-background/90 px-2.5 py-1 text-[10px] font-mono font-medium text-primary shadow-md backdrop-blur-md">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+                  <span>Auto-Scroll</span>
+                </span>
+              </div>
+
               {/* Subtle hover overlay with CTA */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 transition-opacity duration-300 group-hover/preview:opacity-100 flex items-end justify-center p-6">
-                <span className="flex items-center gap-2 rounded-full bg-primary/90 px-4 py-2 text-xs font-semibold text-primary-foreground shadow-lg backdrop-blur-md transition-transform group-hover/preview:scale-105">
-                  <Globe className="h-3.5 w-3.5" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-3 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover/preview:opacity-100 z-10">
+                <span className="flex items-center gap-2 rounded-full border border-primary/30 bg-background/90 px-3.5 py-1.5 text-xs font-medium text-foreground shadow-xl backdrop-blur-md transition-transform duration-200 group-hover/preview:scale-105">
+                  <Globe className="h-3.5 w-3.5 text-primary" />
                   <span>Explore Live Landing Page</span>
-                  <ExternalLink className="h-3 w-3" />
+                  <ExternalLink className="h-3 w-3 text-muted-foreground" />
                 </span>
               </div>
             </a>
