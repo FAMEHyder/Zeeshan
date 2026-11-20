@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
-import { motion, useInView, useScroll, useSpring } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView, useScroll, useSpring, useTransform } from "framer-motion";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { LucideIcon } from "@/components/shared/lucide-icon";
 import { SpotlightCard } from "@/components/shared/spotlight-card";
@@ -55,18 +55,30 @@ const typeLabels: Record<string, string> = {
 interface MilestoneRowProps {
   item: TimelineItem;
   index: number;
-  onRegisterNode: (index: number, el: HTMLDivElement | null) => void;
 }
 
-function MilestoneRow({ item, index, onRegisterNode }: MilestoneRowProps) {
+function MilestoneRow({ item, index }: MilestoneRowProps) {
   const rowRef = useRef<HTMLDivElement>(null);
   const isEven = index % 2 === 0;
 
-  // Active viewing and permanent energized state once reached
-  const isInView = useInView(rowRef, { margin: "0px 0px -28% 0px", once: false });
-  const hasReached = useInView(rowRef, { margin: "0px 0px -28% 0px", once: true });
+  // Scroll tracking through this specific milestone
+  const { scrollYProgress } = useScroll({
+    target: rowRef,
+    offset: ["start 85%", "center 52%"],
+  });
 
-  const isEnergized = isInView || hasReached;
+  const smoothItemProgress = useSpring(scrollYProgress, {
+    stiffness: 140,
+    damping: 24,
+    restDelta: 0.001,
+  });
+
+  // Light wraps around the milestone circle's OWN border from top (12 o'clock) to bottom (6 o'clock)
+  const circleProgress = useTransform(smoothItemProgress, [0.05, 0.95], [0, 1]);
+
+  const isReached = useInView(rowRef, { margin: "0px 0px -25% 0px", once: true });
+  const isInView = useInView(rowRef, { margin: "0px 0px -25% 0px", once: false });
+  const isEnergized = isReached || isInView;
   const config = typeConfig[item.type] || typeConfig.education;
 
   return (
@@ -81,42 +93,84 @@ function MilestoneRow({ item, index, onRegisterNode }: MilestoneRowProps) {
         isEven ? "sm:ml-0 sm:self-start sm:pr-12 sm:text-right" : "sm:self-end sm:pl-12"
       )}
     >
-      {/* Milestone Node Container - Mathematically aligned with the timeline line */}
+      {/* Milestone Node Container - Exactly 1 circle, no extra/separate circles underneath */}
       <div
-        ref={(el) => {
-          onRegisterNode(index, el);
-        }}
         className={cn(
-          "absolute top-4 z-20 flex h-12 w-12 items-center justify-center",
+          "absolute top-4 z-20 flex h-11 w-11 items-center justify-center",
           "left-[26px] -translate-x-1/2",
           isEven
             ? "sm:left-auto sm:right-0 sm:translate-x-1/2"
             : "sm:right-auto sm:left-0 sm:-translate-x-1/2"
         )}
       >
-        {/* Subtle Ambient Pulse Wave when scroll reaches this milestone */}
-        {isInView && (
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0.6 }}
-            animate={{ scale: [1, 1.35, 1], opacity: [0.5, 0, 0.5] }}
-            transition={{ repeat: Infinity, duration: 2.8, ease: "easeInOut" }}
-            className="pointer-events-none absolute -inset-1.5 rounded-full border border-primary/40 bg-primary/10"
-          />
-        )}
+        <div className="relative flex h-full w-full items-center justify-center">
+          <svg className="absolute inset-0 h-full w-full pointer-events-none" viewBox="0 0 44 44">
+            <defs>
+              <linearGradient id={`milestone-grad-${item.id}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#8b5cf6" />
+                <stop offset="50%" stopColor="#ec4899" />
+                <stop offset="100%" stopColor="#06b6d4" />
+              </linearGradient>
+            </defs>
 
-        {/* Inner Solid Opaque Disc ("cheer k na jaye") */}
-        {/* The scroll light routes around this disc, keeping the graduation cap / milestone icon crisp & untouched */}
-        <div
-          className={cn(
-            "relative z-20 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border-2 bg-background dark:bg-zinc-950 transition-all duration-300",
-            config.border,
-            isEnergized ? config.glow : "border-border/60 shadow-sm"
-          )}
-        >
+            {/* Solid opaque inner disc: completely blocks the vertical line so it NEVER cuts through the icon */}
+            <circle cx="22" cy="22" r="20" className="fill-background dark:fill-zinc-950" />
+
+            {/* Base dim border of the milestone circle */}
+            <circle
+              cx="22"
+              cy="22"
+              r="20"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="text-border/60 dark:text-muted/50"
+            />
+
+            {/* Active Glowing Aura on the milestone circle's OWN border */}
+            <motion.path
+              d="M 22 2 A 20 20 0 0 0 22 42"
+              fill="none"
+              stroke={`url(#milestone-grad-${item.id})`}
+              strokeWidth="6"
+              strokeLinecap="round"
+              className="blur-[3px] opacity-70"
+              style={{ pathLength: circleProgress }}
+            />
+            <motion.path
+              d="M 22 2 A 20 20 0 0 1 22 42"
+              fill="none"
+              stroke={`url(#milestone-grad-${item.id})`}
+              strokeWidth="6"
+              strokeLinecap="round"
+              className="blur-[3px] opacity-70"
+              style={{ pathLength: circleProgress }}
+            />
+
+            {/* Active Scroll Light - Flows directly along the milestone circle's OWN left & right border */}
+            <motion.path
+              d="M 22 2 A 20 20 0 0 0 22 42"
+              fill="none"
+              stroke={`url(#milestone-grad-${item.id})`}
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              style={{ pathLength: circleProgress }}
+            />
+            <motion.path
+              d="M 22 2 A 20 20 0 0 1 22 42"
+              fill="none"
+              stroke={`url(#milestone-grad-${item.id})`}
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              style={{ pathLength: circleProgress }}
+            />
+          </svg>
+
+          {/* Icon in Center */}
           <LucideIcon
             name={item.icon}
             className={cn(
-              "h-5 w-5 transition-colors duration-300",
+              "relative z-10 h-5 w-5 transition-colors duration-300",
               isEnergized ? config.iconColor : "text-muted-foreground"
             )}
           />
@@ -152,7 +206,6 @@ function MilestoneRow({ item, index, onRegisterNode }: MilestoneRowProps) {
 
 export function ExperienceTimeline() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const nodeRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   // Track scroll progress through the timeline container
   const { scrollYProgress } = useScroll({
@@ -160,83 +213,15 @@ export function ExperienceTimeline() {
     offset: ["start 75%", "end 60%"],
   });
 
-  // Smooth buttery spring physics for the scroll light beam
+  // Smooth buttery spring physics for the vertical light beam
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 120,
     damping: 25,
     restDelta: 0.001,
   });
 
-  // Dual symmetrical continuous SVG paths that detour around every milestone circle
-  const [paths, setPaths] = useState<{ left: string; right: string }>({
-    left: "",
-    right: "",
-  });
-
-  const handleRegisterNode = useCallback((index: number, el: HTMLDivElement | null) => {
-    nodeRefs.current[index] = el;
-  }, []);
-
-  const updatePaths = useCallback(() => {
-    if (!containerRef.current) return;
-    const containerRect = containerRef.current.getBoundingClientRect();
-    const isMobile = window.innerWidth < 640;
-    const X = isMobile ? 26 : containerRect.width / 2;
-    const R = 24; // Radius of curve wrapping around milestone circle
-
-    const coords: number[] = [];
-    nodeRefs.current.forEach((el) => {
-      if (!el) return;
-      const r = el.getBoundingClientRect();
-      const centerY = r.top - containerRect.top + r.height / 2;
-      coords.push(centerY);
-    });
-
-    if (coords.length === 0) return;
-
-    const H = containerRect.height;
-    let dLeft = `M ${X} 0`;
-    let dRight = `M ${X} 0`;
-
-    coords.forEach((y) => {
-      const topY = Math.max(0, y - R);
-      const bottomY = y + R;
-
-      // Straight line to top of milestone circle
-      dLeft += ` L ${X} ${topY}`;
-      dRight += ` L ${X} ${topY}`;
-
-      // Left arc around milestone circle (sweep = 0)
-      dLeft += ` A ${R} ${R} 0 0 0 ${X} ${bottomY}`;
-
-      // Right arc around milestone circle (sweep = 1)
-      dRight += ` A ${R} ${R} 0 0 1 ${X} ${bottomY}`;
-    });
-
-    // Final straight segment to timeline bottom
-    dLeft += ` L ${X} ${H}`;
-    dRight += ` L ${X} ${H}`;
-
-    setPaths({ left: dLeft, right: dRight });
-  }, []);
-
-  useEffect(() => {
-    updatePaths();
-
-    const handleResize = () => updatePaths();
-    window.addEventListener("resize", handleResize);
-
-    // Also observe container size changes
-    const observer = new ResizeObserver(() => updatePaths());
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      observer.disconnect();
-    };
-  }, [updatePaths]);
+  // Dynamic light beam height
+  const lineHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <section id="experience" className="relative py-24 sm:py-32 overflow-hidden">
@@ -251,112 +236,32 @@ export function ExperienceTimeline() {
         />
 
         <div ref={containerRef} className="relative mx-auto max-w-3xl">
-          {/* ============================================================== */}
-          {/* Unified SVG Timeline Tracks: Scroll Light Itself Curves Around Circles */}
-          {/* ============================================================== */}
-          <svg
-            className="pointer-events-none absolute inset-0 h-full w-full z-10 overflow-visible"
-            aria-hidden="true"
+          {/* Base dim guide track line (Clean single line, NO separate circles underneath) */}
+          <div className="absolute left-[26px] top-0 h-full w-[2px] -translate-x-1/2 bg-border/40 dark:bg-muted/40 sm:left-1/2" />
+
+          {/* Active Glowing Wide Aura Line (Scroll-driven) */}
+          <motion.div
+            style={{ height: lineHeight }}
+            className="pointer-events-none absolute left-[26px] top-0 w-[8px] -translate-x-1/2 bg-gradient-to-b from-primary via-accent to-cyan-400 sm:left-1/2 blur-[4px] opacity-80 origin-top z-10"
+          />
+
+          {/* Active Solid Core Light Beam (Scroll-driven) with continuous flowing laser pulse */}
+          <motion.div
+            style={{ height: lineHeight }}
+            className="pointer-events-none absolute left-[26px] top-0 w-[2.5px] -translate-x-1/2 bg-gradient-to-b from-primary via-accent to-cyan-400 sm:left-1/2 shadow-[0_0_12px_var(--glow-primary),0_0_20px_var(--glow-accent)] origin-top z-10 overflow-hidden"
           >
-            <defs>
-              <linearGradient id="timeline-beam-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#8b5cf6" />
-                <stop offset="50%" stopColor="#d946ef" />
-                <stop offset="100%" stopColor="#06b6d4" />
-              </linearGradient>
-            </defs>
-
-            {/* Base Dim Guide Tracks (Straight lines + circular rings around each node) */}
-            {paths.left && (
-              <>
-                <path
-                  d={paths.left}
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  fill="none"
-                  className="text-border/40 dark:text-muted/40"
-                />
-                <path
-                  d={paths.right}
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  fill="none"
-                  className="text-border/40 dark:text-muted/40"
-                />
-              </>
-            )}
-
-            {/* Fallback straight line while paths initialize on first render */}
-            {!paths.left && (
-              <line
-                x1={typeof window !== "undefined" && window.innerWidth >= 640 ? "50%" : "26"}
-                y1="0"
-                x2={typeof window !== "undefined" && window.innerWidth >= 640 ? "50%" : "26"}
-                y2="100%"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="text-border/40 dark:text-muted/40"
-              />
-            )}
-
-            {/* Active Glowing Wide Aura Line (Scroll-Driven - Routes Around Circles) */}
-            {paths.left && (
-              <>
-                <motion.path
-                  d={paths.left}
-                  fill="none"
-                  stroke="url(#timeline-beam-grad)"
-                  strokeWidth="8"
-                  strokeLinecap="round"
-                  className="blur-[5px] opacity-75"
-                  style={{ pathLength: smoothProgress }}
-                />
-                <motion.path
-                  d={paths.right}
-                  fill="none"
-                  stroke="url(#timeline-beam-grad)"
-                  strokeWidth="8"
-                  strokeLinecap="round"
-                  className="blur-[5px] opacity-75"
-                  style={{ pathLength: smoothProgress }}
-                />
-              </>
-            )}
-
-            {/* Active Solid Core Laser Beam (Scroll-Driven - Routes Around Circles) */}
-            {paths.left && (
-              <>
-                <motion.path
-                  d={paths.left}
-                  fill="none"
-                  stroke="url(#timeline-beam-grad)"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  className="drop-shadow-[0_0_8px_var(--glow-primary)]"
-                  style={{ pathLength: smoothProgress }}
-                />
-                <motion.path
-                  d={paths.right}
-                  fill="none"
-                  stroke="url(#timeline-beam-grad)"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  className="drop-shadow-[0_0_8px_var(--glow-primary)]"
-                  style={{ pathLength: smoothProgress }}
-                />
-              </>
-            )}
-          </svg>
+            {/* Shimmer pulse traveling down the line continuously */}
+            <motion.div
+              animate={{ y: ["-100%", "400%"] }}
+              transition={{ repeat: Infinity, duration: 2.5, ease: "linear" }}
+              className="absolute inset-x-0 h-32 w-full bg-gradient-to-b from-transparent via-white/90 to-transparent"
+            />
+          </motion.div>
 
           {/* Timeline Milestone Rows */}
           <div className="flex flex-col gap-10">
             {timelineItems.map((item, index) => (
-              <MilestoneRow
-                key={item.id}
-                item={item}
-                index={index}
-                onRegisterNode={handleRegisterNode}
-              />
+              <MilestoneRow key={item.id} item={item} index={index} />
             ))}
           </div>
         </div>
